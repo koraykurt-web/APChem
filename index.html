@@ -168,6 +168,13 @@ a{color:var(--s1);}
   border:1px solid var(--baseline); border-radius:9px; background:var(--page); color:var(--ink-1);}
 .lk-card input:focus{outline:2px solid var(--s1); border-color:transparent;}
 .lk-forgot{font-size:12px; color:var(--ink-3);}
+/* ---- mastery & section checks ---- */
+.cm-track{height:12px; background:var(--grid); border-radius:8px; overflow:hidden; margin-top:10px;}
+.cm-fill{height:100%; background:var(--s1); border-radius:8px; transition:width .3s;}
+.lvl-pill{display:inline-block; padding:3px 10px; border-radius:99px; font-size:11.5px; font-weight:700; color:#fff; margin:3px 5px 0 0; white-space:nowrap;}
+.chk{margin-top:16px; border-top:1px dashed var(--grid); padding-top:12px;}
+.chk-title{font-size:11.5px; font-weight:700; color:var(--s3); text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px;}
+.chk-q{font-weight:600; font-size:14px; margin-bottom:8px;}
 .ls-fig{margin:14px 0 4px; text-align:center;}
 .ls-fig .cap{font-size:12px; color:var(--ink-3); margin-top:2px;}
 /* ---- lessons ---- */
@@ -879,6 +886,77 @@ LESSONS.forEach(l => {
   if (DEEP[l.id]) l.sections.push(...DEEP[l.id]);
   l.frq = FRQS[l.id] || null;
 });
+// ================= SECTION CHECKS — "Check your understanding" (keyed by section number) =================
+const CHECKS = {
+"1.1": {q:"How many moles are in 8.8 g of CO<sub>2</sub> (M = 44 g/mol)?", o:["0.20 mol","0.50 mol","2.0 mol","8.8 mol"], ans:0, ex:"n = m/M = 8.8/44 = 0.20 mol."},
+"1.2": {q:"An element shows mass-spec peaks at 35 (75%) and 37 (25%). Its average atomic mass is closest to:", o:["35.5","36.0","36.5","37.0"], ans:0, ex:"35(0.75) + 37(0.25) = 26.25 + 9.25 = 35.5 — chlorine."},
+"1.3": {q:"A compound has empirical formula CH<sub>2</sub> and molar mass 56 g/mol. Molecular formula?", o:["C<sub>4</sub>H<sub>8</sub>","C<sub>2</sub>H<sub>4</sub>","C<sub>3</sub>H<sub>6</sub>","CH<sub>2</sub>"], ans:0, ex:"CH₂ = 14 g/mol; 56/14 = 4 → C₄H₈."},
+"1.4": {q:"Which is the correct ground-state configuration of Cr?", o:["[Ar]4s<sup>1</sup>3d<sup>5</sup>","[Ar]4s<sup>2</sup>3d<sup>4</sup>","[Ar]3d<sup>6</sup>","[Ar]4s<sup>2</sup>4p<sup>4</sup>"], ans:0, ex:"Chromium is a famous exception: a half-filled 3d⁵ plus 4s¹ is lower in energy."},
+"1.5": {q:"In a PES spectrum, a peak twice as tall as another means:", o:["twice as many electrons in that subshell","twice the binding energy","the electrons are twice as close","the element has twice the mass"], ans:0, ex:"Height = electron count; position = binding energy. Keep the two axes separate."},
+"1.6": {q:"Which is smallest: O<sup>2−</sup>, F<sup>−</sup>, Na<sup>+</sup>, Mg<sup>2+</sup>?", o:["Mg<sup>2+</sup>","O<sup>2−</sup>","F<sup>−</sup>","Na<sup>+</sup>"], ans:0, ex:"All isoelectronic (10 e⁻); most protons (12) pulls hardest → smallest."},
+"1.7": {q:"Burning a pure hydrocarbon, ALL the carbon in the sample ends up in:", o:["the CO<sub>2</sub> produced","the H<sub>2</sub>O produced","the leftover ash","the unreacted O<sub>2</sub>"], ans:0, ex:"That's the whole trick of combustion analysis: C → CO₂, H → H₂O (2 H per molecule)."},
+"1.8": {q:"Estimate Z<sub>eff</sub> felt by chlorine's valence electrons (Z = 17, core = 10):", o:["≈ +7","≈ +17","≈ +1","≈ +10"], ans:0, ex:"Z_eff ≈ Z − core = 17 − 10 = +7. Same shell as Na (+1) but seven times the pull — smaller atom, higher IE."},
+"2.1": {q:"Which compound should have the highest melting point?", o:["MgO","NaCl","KCl","NaBr"], ans:0, ex:"Lattice energy ∝ q₁q₂/r: 2+ × 2− charges beat all the 1+ × 1− salts."},
+"2.2": {q:"Formal charge of O in a structure where O has 3 lone pairs and 1 single bond:", o:["−1","0","+1","−2"], ans:0, ex:"FC = 6 − 6 − 1 = −1. This is the singly-bonded O in carbonate or nitrate."},
+"2.3": {q:"SO<sub>2</sub> has 3 electron domains on S (2 bonds + 1 lone pair). Its molecular shape is:", o:["bent","trigonal planar","linear","trigonal pyramidal"], ans:0, ex:"Electron geometry trigonal planar, but the lone pair makes the molecular shape bent, <120°."},
+"2.4": {q:"How many sigma and pi bonds are in a C=C double bond?", o:["1 σ + 1 π","2 σ","2 π","1 σ + 2 π"], ans:0, ex:"First connection is always σ; each extra line is π."},
+"2.5": {q:"Which molecule is nonpolar despite polar bonds?", o:["CF<sub>4</sub>","NH<sub>3</sub>","H<sub>2</sub>O","CHCl<sub>3</sub>"], ans:0, ex:"Tetrahedral with four identical C–F bonds → dipoles cancel. The others are asymmetric."},
+"2.6": {q:"Which species has an incomplete octet on the central atom?", o:["BF<sub>3</sub>","NH<sub>3</sub>","CH<sub>4</sub>","H<sub>2</sub>O"], ans:0, ex:"Boron sits stable with 6 electrons; forcing a double bond would put +1 on fluorine."},
+"2.7": {q:"On a potential-energy curve, a STRONGER bond corresponds to:", o:["a deeper energy well","a longer bond distance","a higher curve at short distance","a flatter minimum"], ans:0, ex:"Well depth = bond energy. Position of the minimum = bond length."},
+"3.1": {q:"Which substance has hydrogen bonding as its strongest IMF?", o:["CH<sub>3</sub>OH","CH<sub>4</sub>","CH<sub>3</sub>OCH<sub>3</sub>","HCl"], ans:0, ex:"Methanol has H directly on O. The ether has O but no H on it; HCl is only dipole–dipole."},
+"3.2": {q:"Stronger IMFs mean vapor pressure is:", o:["lower","higher","unchanged","equal to atmospheric"], ans:0, ex:"Clingier molecules escape less → fewer gas molecules above the liquid → lower VP. The inverse one."},
+"3.3": {q:"1.0 mol of gas at 300 K and 2.0 atm occupies about:", o:["12 L","22 L","25 L","6 L"], ans:0, ex:"V = nRT/P = (1)(0.08206)(300)/2.0 ≈ 12.3 L."},
+"3.4": {q:"A real gas behaves most ideally at:", o:["low pressure and high temperature","high pressure and low temperature","high pressure and high temperature","low temperature only"], ans:0, ex:"Far apart (low P) and fast (high T) → particle volume and IMFs both become negligible."},
+"3.5": {q:"To make 500. mL of 0.10 M solution from 1.0 M stock, you need how much stock?", o:["50. mL","5.0 mL","100 mL","450 mL"], ans:0, ex:"V₁ = M₂V₂/M₁ = (0.10 × 500)/1.0 = 50 mL, then dilute to the 500-mL mark."},
+"3.6": {q:"In paper chromatography, a component with a HIGH R<sub>f</sub> value is:", o:["more attracted to the solvent than the paper","more attracted to the paper","the heaviest component","the most colored component"], ans:0, ex:"Rf near 1 = traveled with the mobile phase = stronger attractions to solvent."},
+"3.7": {q:"Gas collected over water at total pressure 760 torr (water VP = 20 torr). The dry gas pressure is:", o:["740 torr","760 torr","780 torr","20 torr"], ans:0, ex:"Dalton: subtract the water vapor's share first, then use PV = nRT."},
+"3.8": {q:"A correct particulate drawing of dissolved CaCl<sub>2</sub> shows:", o:["separate Ca<sup>2+</sup> and 2× Cl<sup>−</sup> ions, water O-ends toward Ca<sup>2+</sup>","intact CaCl<sub>2</sub> units floating","Ca<sup>2+</sup> and Cl<sup>−</sup> paired together","water H-ends toward Ca<sup>2+</sup>"], ans:0, ex:"Ions separate and hydrate: δ− oxygen faces cations, δ+ hydrogens face anions, 1:2 ratio."},
+"3.9": {q:"Ethanol boils 100° higher than dimethyl ether (same formula). The key reason:", o:["ethanol's O–H allows hydrogen bonding","ethanol is heavier","the ether has no oxygen","ethanol has stronger covalent bonds"], ans:0, ex:"Same molar mass → same LDF. The O–H group is the whole difference."},
+"4.1": {q:"Which is a CHEMICAL change?", o:["iron rusting","ice melting","sugar dissolving","water boiling"], ans:0, ex:"Rusting forms a new substance (Fe₂O₃). The others change form, not identity."},
+"4.2": {q:"In the net ionic equation for HCl(aq) + NaOH(aq), what remains?", o:["H<sup>+</sup> + OH<sup>−</sup> → H<sub>2</sub>O","HCl + OH<sup>−</sup> → Cl<sup>−</sup> + H<sub>2</sub>O","Na<sup>+</sup> + Cl<sup>−</sup> → NaCl","HCl + NaOH → NaCl + H<sub>2</sub>O"], ans:0, ex:"Both are strong → split both; Na⁺ and Cl⁻ cancel as spectators."},
+"4.3": {q:"For N<sub>2</sub> + 3H<sub>2</sub> → 2NH<sub>3</sub>: with 2.0 mol N<sub>2</sub> and 3.0 mol H<sub>2</sub>, the limiting reactant is:", o:["H<sub>2</sub>","N<sub>2</sub>","neither","cannot be determined"], ans:0, ex:"3.0 mol H₂ needs only 1.0 mol N₂; there is 2.0 → H₂ runs out first."},
+"4.4": {q:"The oxidation number of Cr in Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> is:", o:["+6","+3","+7","+12"], ans:0, ex:"7 O × (−2) = −14; total −2 → 2Cr = +12 → each Cr = +6."},
+"4.5": {q:"At the equivalence point of any titration:", o:["moles of titrant match the stoichiometric requirement","pH is always 7","the indicator must be colorless","volume of titrant equals volume of analyte"], ans:0, ex:"Equivalence is a mole statement, not a pH or volume statement."},
+"4.6": {q:"Balancing a half-reaction in acid, you balance oxygen atoms by adding:", o:["H<sub>2</sub>O","O<sub>2</sub>","OH<sup>−</sup>","H<sup>+</sup>"], ans:0, ex:"O with H₂O, then H with H⁺, then charge with e⁻ — in that order."},
+"4.7": {q:"In a permanganate titration, the endpoint is seen when:", o:["the first persistent pale pink appears","the solution turns colorless","a precipitate forms","bubbles stop"], ans:0, ex:"While reductant remains, purple MnO₄⁻ is consumed; the first pink that stays means one drop past equivalence."},
+"5.1": {q:"According to collision theory, a reaction occurs only if colliding particles have:", o:["enough energy AND correct orientation","high concentration","a catalyst present","opposite charges"], ans:0, ex:"Both conditions — that's why only a tiny fraction of collisions react."},
+"5.2": {q:"Doubling [A] increases the rate ×8. The order in A is:", o:["3","2","4","8"], ans:0, ex:"2ⁿ = 8 → n = 3."},
+"5.3": {q:"For a first-order reaction with t<sub>½</sub> = 10 min, how much of 80 g remains after 30 min?", o:["10 g","20 g","40 g","27 g"], ans:0, ex:"Three half-lives: 80 → 40 → 20 → 10 g."},
+"5.4": {q:"Raising temperature increases rate mainly by:", o:["increasing the fraction of collisions with E ≥ E<sub>a</sub>","lowering E<sub>a</sub>","increasing the concentration","changing ΔH"], ans:0, ex:"Ea is fixed; the Maxwell–Boltzmann tail beyond it grows enormously with T."},
+"5.5": {q:"The rate law of a multi-step mechanism comes from:", o:["the slow (rate-determining) step","the overall equation","the fastest step","the last step"], ans:0, ex:"The bottleneck sets the pace — and only elementary steps let coefficients become orders."},
+"5.6": {q:"A catalyst changes which of the following?", o:["activation energy","equilibrium constant K","ΔH","equilibrium concentrations"], ans:0, ex:"Only the pathway (Ea). Thermodynamics — K, ΔH, final position — is untouched."},
+"5.7": {q:"For rate = k[A]<sup>2</sup> with rate in M/s, the units of k are:", o:["M<sup>−1</sup>s<sup>−1</sup>","s<sup>−1</sup>","M·s<sup>−1</sup>","M<sup>−2</sup>s<sup>−1</sup>"], ans:0, ex:"M/s = k·M² → k = M⁻¹s⁻¹. Units of k encode the overall order."},
+"5.8": {q:"In a mechanism, a species produced in step 1 and consumed in step 2 is:", o:["an intermediate","a catalyst","the activated complex","a spectator"], ans:0, ex:"Intermediate: made then eaten. Catalyst is the reverse — consumed then regenerated."},
+"6.1": {q:"A reaction makes the beaker feel HOT. For the reaction system:", o:["ΔH &lt; 0 (exothermic)","ΔH &gt; 0 (endothermic)","ΔS &lt; 0","q = 0"], ans:0, ex:"Your hand is the surroundings — it receives heat that the system released."},
+"6.2": {q:"Heat to warm 10.0 g of water (c = 4.18) by 20.0°C:", o:["≈ 836 J","≈ 84 J","≈ 8360 J","≈ 209 J"], ans:0, ex:"q = 10.0 × 4.18 × 20.0 = 836 J."},
+"6.3": {q:"During boiling, the added heat goes into:", o:["separating molecules from their IMFs (potential energy)","raising the temperature","breaking O–H bonds","increasing molecular speed"], ans:0, ex:"Temperature (kinetic energy) is flat during a phase change; PE rises."},
+"6.4": {q:"If reaction X has ΔH = −100 kJ, the reverse of X has ΔH =", o:["+100 kJ","−100 kJ","0 kJ","−200 kJ"], ans:0, ex:"Flip the reaction, flip the sign — enthalpy is a state function."},
+"6.5": {q:"Using bond energies, a reaction is exothermic when:", o:["bonds formed are stronger than bonds broken","bonds broken are stronger","no bonds change","the products are gases"], ans:0, ex:"Forming strong bonds releases more than breaking weak ones cost."},
+"6.6": {q:"Metal at 90°C enters water at 20°C; final T = 25°C. The metal's ΔT in q = mcΔT is:", o:["65°","5°","70°","25°"], ans:0, ex:"The metal went 90 → 25 = 65 degrees. Using 5° (the water's ΔT) is the classic slip."},
+"6.7": {q:"Given a table of standard formation enthalpies, ΔH° of a reaction =", o:["Σ ΔH<sub>f</sub>°(products) − Σ ΔH<sub>f</sub>°(reactants)","Σ reactants − Σ products","the sum of all values","bonds broken − bonds formed"], ans:0, ex:"Products minus reactants, each multiplied by its coefficient."},
+"7.1": {q:"Which appears in the K expression for CaCO<sub>3</sub>(s) ⇌ CaO(s) + CO<sub>2</sub>(g)?", o:["only [CO<sub>2</sub>]","all three species","only the solids","[CaO]/[CaCO<sub>3</sub>]"], ans:0, ex:"Pure solids are excluded → K = [CO₂] (or P(CO₂))."},
+"7.2": {q:"If Q &gt; K, the reaction proceeds:", o:["in reverse (toward reactants)","forward","not at all","explosively"], ans:0, ex:"Too many products relative to equilibrium → net reverse until Q falls to K."},
+"7.3": {q:"The 5% check exists to verify that:", o:["x is negligible compared with the initial concentration","K is greater than 1","the reaction is fast","the pH is below 7"], ans:0, ex:"If x/C₀ > 5%, the shortcut breaks and you must solve the quadratic."},
+"7.4": {q:"Which change increases K itself?", o:["changing the temperature","adding reactant","increasing pressure","adding a catalyst"], ans:0, ex:"Temperature is the ONLY variable that changes K; everything else just shifts within the same K."},
+"7.5": {q:"Adding NaF to a saturated CaF<sub>2</sub> solution causes:", o:["more CaF<sub>2</sub> to precipitate","more CaF<sub>2</sub> to dissolve","no change","the K<sub>sp</sub> to decrease"], ans:0, ex:"Common-ion effect: extra F⁻ pushes Q above Ksp → solubility drops. Ksp itself is unchanged."},
+"7.6": {q:"When both sides of K = (2x)²/(1−x)² form perfect squares, the fastest solution method is:", o:["take the square root of both sides","the quadratic formula","graphing","assume x is negligible"], ans:0, ex:"√ both sides → a linear equation. Recognizing this saves minutes on the exam."},
+"7.7": {q:"AgCl (K<sub>sp</sub> 1.8×10<sup>−10</sup>, s = √K<sub>sp</sub>) vs Ag<sub>2</sub>CrO<sub>4</sub> (K<sub>sp</sub> 1.1×10<sup>−12</sup>, 4s³ = K<sub>sp</sub>): which dissolves more (mol/L)?", o:["Ag<sub>2</sub>CrO<sub>4</sub>, despite the smaller K<sub>sp</sub>","AgCl, because its K<sub>sp</sub> is larger","they are equal","cannot be compared"], ans:0, ex:"Different stoichiometries → convert to s first: 6.5×10⁻⁵ vs 1.3×10⁻⁵ M."},
+"8.1": {q:"The pH of 0.001 M HNO<sub>3</sub> is:", o:["3.0","1.0","11.0","0.001"], ans:0, ex:"Strong acid → [H₃O⁺] = 10⁻³ → pH 3.00."},
+"8.2": {q:"Two acids at 0.1 M: HCl gives pH 1, HF gives pH 2.1. Why the difference?", o:["HF only partially ionizes (weak acid)","HF is more concentrated","HCl is diluted","HF has no hydrogen"], ans:0, ex:"Same concentration, different strength — strength = extent of ionization, set by Ka."},
+"8.3": {q:"A solution of NH<sub>4</sub>Cl in water is:", o:["acidic","basic","neutral","amphoteric"], ans:0, ex:"NH₄⁺ is the conjugate acid of a weak base → donates H⁺; Cl⁻ (from strong HCl) does nothing."},
+"8.4": {q:"A buffer contains equal moles of HA and A<sup>−</sup> (pK<sub>a</sub> = 5.0). Its pH is:", o:["5.0","7.0","2.5","10.0"], ans:0, ex:"HH equation: log(1) = 0 → pH = pKa."},
+"8.5": {q:"In a weak acid–strong base titration, pH = pK<sub>a</sub> occurs at:", o:["half-equivalence","equivalence","the start","the end"], ans:0, ex:"Half the acid converted → [HA] = [A⁻]. The most-tested single fact in Unit 8."},
+"8.6": {q:"Why is HClO<sub>4</sub> stronger than HClO?", o:["extra oxygens stabilize the conjugate base by spreading its charge","it has more hydrogens","its bonds are longer","chlorine is more electronegative in HClO<sub>4</sub>"], ans:0, ex:"More O atoms delocalize the negative charge of the anion → easier to form → stronger acid."},
+"8.7": {q:"Past the equivalence point of a weak acid–strong base titration, the pH is set by:", o:["the excess strong base","the remaining weak acid","the conjugate base A<sup>−</sup>","the indicator"], ans:0, ex:"Excess OH⁻ swamps the weak base's tiny contribution — just compute excess molarity."},
+"8.8": {q:"To design a buffer at pH 9.2, the best acid has pK<sub>a</sub> close to:", o:["9.2","7.0","4.5","14.0"], ans:0, ex:"Buffers work within pKa ± 1; NH₄⁺/NH₃ (pKa 9.25) would be the classic pick."},
+"9.1": {q:"Which has the most positive ΔS?", o:["2H<sub>2</sub>O<sub>2</sub>(l) → 2H<sub>2</sub>O(l) + O<sub>2</sub>(g)","N<sub>2</sub>(g) + 3H<sub>2</sub>(g) → 2NH<sub>3</sub>(g)","H<sub>2</sub>O(g) → H<sub>2</sub>O(l)","NaCl(aq) → NaCl(s)"], ans:0, ex:"It creates gas from liquid (0 → 1 gas moles). The others reduce disorder."},
+"9.2": {q:"A reaction with ΔH &lt; 0 and ΔS &lt; 0 is favorable:", o:["only at low temperatures","only at high temperatures","always","never"], ans:0, ex:"ΔG = ΔH − TΔS: the unfavorable −TΔS term grows with T, so keep T low. (Freezing water.)"},
+"9.3": {q:"If K &lt; 1 for a reaction at 25°C, then ΔG° is:", o:["positive","negative","zero","undefined"], ans:0, ex:"ΔG° = −RT ln K: ln of a number below 1 is negative → ΔG° > 0."},
+"9.4": {q:"In a galvanic cell, electrons flow:", o:["from anode to cathode through the wire","from cathode to anode through the wire","through the salt bridge","from the salt bridge to both electrodes"], ans:0, ex:"Oxidation releases electrons at the anode; they travel the external wire to the cathode. Ions use the bridge."},
+"9.5": {q:"How many moles of electrons deposit 0.10 mol of Al from Al<sup>3+</sup>?", o:["0.30 mol","0.10 mol","0.033 mol","3.0 mol"], ans:0, ex:"Al³⁺ + 3e⁻ → Al: three electrons per atom → 0.30 mol e⁻."},
+"9.6": {q:"For ΔH = +50 kJ/mol and ΔS = +100 J/mol·K, the reaction becomes favorable above:", o:["500 K","0.5 K","5000 K","50 K"], ans:0, ex:"T = ΔH/ΔS = 50 000 J / 100 J/K = 500 K. Convert kJ → J first — always."},
+"9.7": {q:"As a battery discharges, Q approaches K and the voltage:", o:["decreases toward zero","increases","stays at E°","oscillates"], ans:0, ex:"A dead battery IS a cell at equilibrium: Q = K, E = 0."},
+};
 // ================= FLASHCARD DATA =================
 // typed cards: student types the formula; checker normalizes charges/subscripts.
 const DECKS = [
@@ -1130,7 +1208,7 @@ const QUIZZES = [
 const EXAM_DATE = new Date(2027, 4, 6); // May 6, 2027
 const INT = [0, 1, 3, 7, 16, 30];       // days per Leitner box 0..5
 
-let state = { version: 1, cards: {}, quizHistory: [], activity: {}, lessons: {}, qstats: {}, frq: {} };
+let state = { version: 1, cards: {}, quizHistory: [], activity: {}, lessons: {}, qstats: {}, frq: {}, checks: {} };
 
 // ---------- persistence (auto-save) ----------
 // Uses the browser's local storage when available (opening the same file/URL in the
@@ -1140,7 +1218,7 @@ const STORE_KEY = "apchem-trainer-v1";
 let storageOK = false;
 try { localStorage.setItem("__t", "1"); localStorage.removeItem("__t"); storageOK = true; } catch (e) { storageOK = false; }
 function normalizeState(d) {
-  return { version: 1, cards: d.cards || {}, quizHistory: d.quizHistory || [], activity: d.activity || {}, lessons: d.lessons || {}, qstats: d.qstats || {}, frq: d.frq || {} };
+  return { version: 1, cards: d.cards || {}, quizHistory: d.quizHistory || [], activity: d.activity || {}, lessons: d.lessons || {}, qstats: d.qstats || {}, frq: d.frq || {}, checks: d.checks || {} };
 }
 function save() {
   if (!storageOK) return;
@@ -1211,6 +1289,21 @@ function renderDash() {
     tile("Study streak", streak() + (streak() === 1 ? " day" : " days"), "Days in a row with any activity")
   );
   p.append(g);
+  p.append(el("h2", null, "Course mastery"));
+  const cm = el("div", "tile");
+  const avg = Math.round(LESSONS.reduce((s, l) => s + unitMastery(l), 0) / LESSONS.length);
+  cm.innerHTML = "<div style='display:flex;justify-content:space-between;align-items:baseline'><span class='label'>All 9 units combined</span><b style='font-size:20px'>" + avg + "%</b></div>";
+  const track = el("div", "cm-track"); const fill = el("div", "cm-fill");
+  fill.style.width = avg + "%"; track.append(fill); cm.append(track);
+  const pills = el("div"); pills.style.marginTop = "10px";
+  LESSONS.forEach(l => {
+    const m = unitMastery(l), lv = levelOf(m);
+    const pl = el("span", "lvl-pill", "U" + l.id.slice(1) + " " + m + "%");
+    pl.style.background = lv.c; pl.title = l.name + " — " + lv.n;
+    pills.append(pl);
+  });
+  cm.append(pills, el("div", "hint", "Levels: Attempted → Familiar (50%) → Proficient (75%) → Mastered (92%). Fed by section checks, decks, quizzes and FRQs."));
+  p.append(cm);
   p.append(el("h2", null, "Today's plan"));
   const plan = el("div", "tile");
   const due = totalDue();
@@ -1240,6 +1333,61 @@ function tile(label, value, hint) {
   return t;
 }
 
+// ---------- mastery (Khan-style levels) ----------
+function unitChecks(l) {
+  const un = l.id.slice(1);
+  const keys = Object.keys(CHECKS).filter(k => k.split(".")[0] === un);
+  const ok = keys.filter(k => state.checks[k] && state.checks[k].ok).length;
+  return { ok, total: keys.length };
+}
+function unitMastery(l) {
+  const c = unitChecks(l);
+  const deckM = l.decks.reduce((s, did) => s + deckMastery(DECKS.find(d => d.id === did)), 0) / l.decks.length;
+  const best = bestScore(l.quiz) || 0;
+  const fr = state.frq[l.id];
+  return Math.round(
+    (state.lessons[l.id] ? 10 : 0)
+    + 25 * (c.total ? c.ok / c.total : 0)
+    + 20 * deckM
+    + 30 * best / 100
+    + 15 * (fr ? fr.got / fr.max : 0));
+}
+function levelOf(p) {
+  if (p <= 0) return { n: "Not started", c: "var(--baseline)" };
+  if (p < 50) return { n: "Attempted", c: "var(--ink-3)" };
+  if (p < 75) return { n: "Familiar", c: "var(--s2)" };
+  if (p < 92) return { n: "Proficient", c: "var(--s1)" };
+  return { n: "Mastered", c: "var(--good)" };
+}
+
+// ---------- section checks ("Check your understanding") ----------
+function checkWidget(key, c) {
+  const box = el("div", "chk");
+  const done = state.checks[key] && state.checks[key].ok;
+  box.append(el("div", "chk-title", "✔ Check your understanding" + (done ? " · answered ✓" : "")));
+  box.append(el("div", "chk-q", c.q));
+  const order = shuffle(c.o.map((_, i) => i));
+  const btns = [];
+  order.forEach(oi => {
+    const b = el("button", "qz-opt", c.o[oi]);
+    b.style.fontSize = "13.5px"; b.style.padding = "9px 13px";
+    b.addEventListener("click", () => {
+      const cur = state.checks[key] || { ok: 0, w: 0 };
+      if (oi === c.ans) {
+        btns.forEach(x => x.disabled = true);
+        b.classList.add("correct");
+        box.append(el("div", "qz-expl", c.ex));
+        cur.ok = 1; state.checks[key] = cur; logActivity(1);
+      } else {
+        b.classList.add("wrong"); b.disabled = true;
+        cur.w = (cur.w || 0) + 1; state.checks[key] = cur; save();
+      }
+    });
+    btns.push(b); box.append(b);
+  });
+  return box;
+}
+
 // ---------- lessons (Learn tab) ----------
 let learnView = null; // lesson id being read, or null for the list
 function renderLearn() {
@@ -1252,7 +1400,11 @@ function renderLearn() {
       const row = el("div", "ls-row");
       const done = state.lessons[l.id];
       const best = bestScore(l.quiz);
+      const m = unitMastery(l), lv = levelOf(m);
       row.append(el("div", "name", l.name + "<div style='font-weight:400;font-size:12px;color:var(--ink-3)'>Exam weight: " + l.weight + " · " + l.sections.length + " sections</div>"));
+      const pill = el("div", "lvl-pill", lv.n + (m > 0 ? " · " + m + "%" : ""));
+      pill.style.background = lv.c;
+      row.append(pill);
       row.append(el("div", "status" + (done ? " done" : ""), done ? "studied " + done + (best != null ? " · quiz " + best + "%" : " · quiz pending") : (i === 0 || state.lessons[LESSONS[i - 1].id] ? "ready" : "after " + LESSONS[i - 1].id.toUpperCase())));
       row.addEventListener("click", () => { learnView = l.id; renderLearn(); window.scrollTo(0, 0); });
       p.append(row);
@@ -1268,6 +1420,8 @@ function renderLearn() {
     const sec = el("div", "ls-sec");
     sec.append(el("h4", null, s.t));
     sec.append(el("div", null, s.h));
+    const num = s.t.split(" ")[0];
+    if (CHECKS[num]) sec.append(checkWidget(num, CHECKS[num]));
     v.append(sec);
   });
   if (lesson.videos) {
@@ -1478,6 +1632,15 @@ function renderQuizList() {
   sr.append(srb);
   if (pool.length) sr.addEventListener("click", startReviewQuiz);
   p.append(sr);
+  const cc = el("div", "quiz-row");
+  const ccBest = bestScore("challenge");
+  cc.append(el("div", "name", "🏆 Course Challenge — 30 mixed questions, all units<div style='font-weight:400;font-size:12px;color:var(--ink-3)'>Random balanced draw from the whole course; the closest thing here to exam conditions. Best taken monthly and in the final review.</div>"));
+  cc.append(el("div", "meta", ccBest == null ? "not taken" : "best: " + ccBest + "%"));
+  const ccb = el("button", "btn small", ccBest == null ? "Start" : "Retake");
+  ccb.addEventListener("click", e => { e.stopPropagation(); startChallenge(); });
+  cc.append(ccb);
+  cc.addEventListener("click", startChallenge);
+  p.append(cc);
   QUIZZES.forEach(u => {
     const row = el("div", "quiz-row");
     const best = bestScore(u.id);
@@ -1508,6 +1671,18 @@ function weakPool() {
 }
 function startReviewQuiz() {
   launchQuiz({ id: "review", name: "Smart Review · your missed questions", weight: "" }, weakPool().slice(0, 12));
+}
+function startChallenge() {
+  const seen = new Set();
+  let items = [];
+  QUIZZES.forEach(u => {
+    shuffle(u.qs.map((q, qi) => ({ q, uid: u.id, qi }))).slice(0, 3)
+      .forEach(it => { seen.add(it.uid + "#" + it.qi); items.push(it); });
+  });
+  const extras = shuffle(QUIZZES.flatMap(u => u.qs.map((q, qi) => ({ q, uid: u.id, qi }))))
+    .filter(it => !seen.has(it.uid + "#" + it.qi)).slice(0, 3);
+  items = shuffle(items.concat(extras)).slice(0, 30);
+  launchQuiz({ id: "challenge", name: "Course Challenge · all units mixed", weight: "" }, items);
 }
 function renderQuiz(p) {
   const z = quiz;
@@ -1581,7 +1756,7 @@ function renderProgress() {
   // ---- Report card ----
   const rc = el("div", "chart-tile"); rc.style.marginBottom = "14px";
   rc.append(el("h3", null, "📋 Report card"), el("div", "chart-sub", "One row per unit, built from every flashcard and quiz answer. The 'next move' column is the study plan."));
-  const rt = el("table", "reviewtbl", "<tr><th>Unit</th><th>Lesson</th><th>Quiz best</th><th>FRQ</th><th>Weak Qs</th><th>Grade</th><th>Next move</th></tr>");
+  const rt = el("table", "reviewtbl", "<tr><th>Unit</th><th>Level</th><th>Lesson</th><th>Quiz best</th><th>FRQ</th><th>Weak Qs</th><th>Grade</th><th>Next move</th></tr>");
   LESSONS.forEach(l => {
     const studied = !!state.lessons[l.id];
     const best = bestScore(l.quiz);
@@ -1598,8 +1773,10 @@ function renderProgress() {
       : fr.got < fr.max * 0.7 ? "FRQ below 70% — reread the sections behind the missed points, retry"
       : mastery < 0.6 ? "Keep drilling deck: " + l.decks.map(did => DECKS.find(d => d.id === did).name).join(", ")
       : "Solid — maintain with daily due cards";
+    const um = unitMastery(l), ulv = levelOf(um);
     rt.append(el("tr", null,
       "<td>" + l.name.replace(" ·", "<br><span style='font-size:11px;color:var(--ink-3)'>") + "</span></td>"
+      + "<td><b style='color:" + ulv.c + "'>" + ulv.n + "</b><br><span style='font-size:11px;color:var(--ink-3)'>" + um + "%</span></td>"
       + "<td>" + (studied ? "✓" : "—") + "</td>"
       + "<td>" + (best == null ? "—" : best + "%") + "</td>"
       + "<td>" + (fr ? fr.got + "/" + fr.max : "—") + "</td>"
