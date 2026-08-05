@@ -633,6 +633,252 @@ ${DIAG.cell}
 ]},
 ];
 const LESSONS = LESSONS_A.concat(LESSONS_B);
+// ================= DEEP-DIVE SECTIONS (Units 1–5) =================
+const DEEP_A = {
+u1: [
+{t:"1.7 Problem clinic — hydrates & combustion analysis", h:`
+<p>Two multi-step formula problems the exam loves, worked in full.</p>
+<div class="ls-ex"><b>Hydrate.</b> 4.99 g of CuSO<sub>4</sub>·xH<sub>2</sub>O is heated until all water leaves; 3.19 g of CuSO<sub>4</sub> remains. Find x.<br>
+① Water lost = 4.99 − 3.19 = 1.80 g → 1.80/18.0 = 0.100 mol H<sub>2</sub>O.<br>
+② CuSO<sub>4</sub>: 3.19/159.6 = 0.0200 mol.<br>
+③ Ratio = 0.100/0.0200 = 5 → <b>CuSO<sub>4</sub>·5H<sub>2</sub>O</b>.</div>
+<div class="ls-ex"><b>Combustion analysis.</b> Burning 0.500 g of a hydrocarbon gives 1.467 g CO<sub>2</sub> and 0.900 g H<sub>2</sub>O. Empirical formula?<br>
+① mol C = 1.467/44.0 = 0.0333; mol H = 2 × (0.900/18.0) = 0.100.<br>
+② Ratio H/C = 0.100/0.0333 = 3 → <b>CH<sub>3</sub></b> → real molecule likely C<sub>2</sub>H<sub>6</sub>.<br>
+Key trick: every C in the sample ends up in CO<sub>2</sub>, every H ends up in H<sub>2</sub>O (×2 per molecule).</div>
+<div class="ls-trap"><b>Trap.</b> In combustion problems with oxygen in the compound (C, H <i>and</i> O), find O by subtraction: mass O = sample − mass C − mass H. Never read O from the CO<sub>2</sub>/H<sub>2</sub>O directly — that oxygen came from the air.</div>`},
+{t:"1.8 Deep dive — shielding, Z<sub>eff</sub>, and reading PES like a pro", h:`
+<p><b>Effective nuclear charge</b> Z<sub>eff</sub> ≈ Z − (core electrons). Valence electrons feel the nucleus <i>through</i> the core's shielding. Na: Z = 11, core = 10 → Z<sub>eff</sub> ≈ +1. Cl: Z = 17, core = 10 → Z<sub>eff</sub> ≈ +7. Same shell (n = 3), seven times the pull — that's why Cl is smaller with a far higher ionization energy. Every trend answer can be built from this one subtraction.</p>
+<p><b>PES identification drill.</b> A spectrum shows 5 peaks with relative heights 2 : 2 : 6 : 2 : 2. Total electrons = 14 → silicon? Check: Si is 1s²2s²2p⁶3s²3p². Heights match 2,2,6,2,2 ✓. Peak positions confirm: the 1s peak sits far left (highest binding energy ~150+ MJ/mol), the two n = 3 peaks sit close together at low energy.</p>
+<div class="ls-ex"><b>Subtle FRQ favorite.</b> Why is the 2p peak of F at higher binding energy than the 2p peak of O? Same shell and same shielding, but F has one more proton → larger Z<sub>eff</sub> → electrons held tighter. (Answer pattern: compare Z, compare shielding, conclude via Coulomb.)</div>
+<div class="ls-trap"><b>Trap.</b> Peak height compares <i>electron counts</i>, never energies; peak position compares <i>energies</i>, never counts. Mixing these up is the #1 PES error.</div>`},
+],
+u2: [
+{t:"2.6 Lewis edge cases — where easy rules break", h:`
+<p>The exam tests Lewis structures mostly at the edges:</p>
+<ul>
+<li><b>Incomplete octet:</b> B and Be can sit stable with 6 (BF<sub>3</sub>) or 4 (BeCl<sub>2</sub>) electrons. Don't force a double bond onto BF<sub>3</sub> — the formal charges get worse (F would go +1).</li>
+<li><b>Expanded octet:</b> period-3+ central atoms (P, S, Xe) can exceed 8: PCl<sub>5</sub>, SF<sub>6</sub>, XeF<sub>4</sub>.</li>
+<li><b>Odd-electron species:</b> NO has 11 valence electrons — one unpaired. Radicals are reactive precisely because of that lone electron.</li>
+<li><b>Choosing the central atom:</b> least electronegative (never H). In oxoacids, H attaches to O, not to the central atom.</li></ul>
+<div class="ls-ex"><b>Worked example — best structure of OCN<sup>−</sup> (cyanate).</b> Three candidates: O≡C–N (FC: O +1, N −2), O=C=N (FC: O 0, N −1), O–C≡N (FC: O −1, N 0). Total charge −1 in all ✓. Best: put the negative FC on the <i>most electronegative</i> atom → <b>O–C≡N with −1 on O</b> is the major contributor; O=C=N also contributes. O≡C–N loses: +1 on the most electronegative atom is the worst arrangement.</div>`},
+{t:"2.7 Reading potential-energy curves & comparing bonds", h:`
+<p>A PE-vs-internuclear-distance curve encodes everything about a bond: the <b>minimum's depth</b> = bond energy; the <b>minimum's x-position</b> = bond length; the curve's rise at short distance = nuclear repulsion.</p>
+<div class="ls-ex"><b>Worked comparison.</b> Curves for H–H, H–Cl and H–I on one graph: H–H has the deepest, leftmost well (436 kJ/mol, 74 pm — smallest atoms, closest approach); H–I the shallowest, rightmost (~295 kJ/mol, 161 pm — big iodine keeps the nuclei far apart, weaker attraction per Coulomb). Given curves, match them by size logic before reading any numbers.</div>
+<div class="ls-ex"><b>Lattice-energy ranking drill.</b> Rank NaF, KCl, CaO, MgO by melting point. Charge product first: MgO and CaO are 2×2 = 4; NaF and KCl are 1×1 = 1. Then radius: Mg<sup>2+</sup> &lt; Ca<sup>2+</sup>, F<sup>−</sup> &lt; Cl<sup>−</sup>. Order: <b>MgO &gt; CaO &gt; NaF &gt; KCl</b>. Charge beats radius — always sort by charge product first, break ties by size.</div>
+<div class="ls-trap"><b>Trap.</b> On PE curves, "stronger bond" = deeper well, NOT longer distance. And zero on the y-axis = separated atoms, so bond energies are read as depths <i>below</i> zero.</div>`},
+],
+u3: [
+{t:"3.7 Gas problem clinic — the four classic setups", h:`
+<div class="ls-ex"><b>① Molar mass from gas data.</b> 0.500 g of a gas occupies 250. mL at 100.°C and 1.00 atm. M = ?<br>
+n = PV/RT = (1.00)(0.250)/(0.08206 × 373) = 8.17×10<sup>−3</sup> mol → M = 0.500/8.17×10<sup>−3</sup> ≈ <b>61 g/mol</b>.</div>
+<div class="ls-ex"><b>② Changing conditions (combined law).</b> A balloon is 2.0 L at 27°C and 1.0 atm; it rises to where T = −23°C and P = 0.50 atm.<br>
+V₂ = V₁ × (P₁/P₂) × (T₂/T₁) = 2.0 × (1.0/0.50) × (250/300) = <b>3.3 L</b>. Kelvin conversion is where this dies: 27°C = 300 K, −23°C = 250 K.</div>
+<div class="ls-ex"><b>③ Gas collected over water.</b> H<sub>2</sub> collected over water at 25°C; total pressure 768 torr, water vapor pressure 24 torr.<br>
+P(H<sub>2</sub>) = 768 − 24 = <b>744 torr</b>. Then use PV = nRT with the <i>corrected</i> pressure. Skipping the subtraction is the intended trap.</div>
+<div class="ls-ex"><b>④ Stoichiometry with gases.</b> What volume of O<sub>2</sub> at STP is needed to burn 4.0 g CH<sub>4</sub>? mol CH<sub>4</sub> = 0.25; ratio 1:2 → 0.50 mol O<sub>2</sub> → V = 0.50 × 22.4 ≈ <b>11 L</b>. Gases enter stoichiometry as moles like everything else; volume is just the costume.</div>`},
+{t:"3.8 Particulate diagrams & solution clinic", h:`
+<p>AP loves "draw/select the particle picture." Rules for a correct particulate diagram of a solution: ions separated (not paired), each ion surrounded by water molecules with the <b>correct orientation</b> — O (δ−) pointing at cations, H (δ+) pointing at anions — and the ion ratio matching the formula (CaCl<sub>2</sub> → twice as many Cl<sup>−</sup> as Ca<sup>2+</sup>).</p>
+<div class="ls-ex"><b>Dilution chain.</b> You need 250. mL of 0.0400 M CuSO<sub>4</sub> from a 2.00 M stock. V₁ = M₂V₂/M₁ = (0.0400 × 250)/2.00 = <b>5.00 mL of stock</b>, diluted to the 250-mL mark in a volumetric flask (not "add 245 mL" — you fill <i>to the mark</i>).</div>
+<div class="ls-ex"><b>Spectrophotometry, full workflow.</b> Standards of 0.10 / 0.20 / 0.30 M give A = 0.15 / 0.30 / 0.45 → slope εb = 1.5 M⁻¹. Unknown reads A = 0.24 → c = 0.24/1.5 = <b>0.16 M</b>. If the unknown reads above your highest standard: dilute it and multiply back — never extrapolate beyond the calibration line.</div>
+<div class="ls-trap"><b>Trap.</b> In particulate diagrams, drawing NaCl as bonded "NaCl molecules" floating in water is an automatic zero for that part. Dissolved ionic compounds exist as separate hydrated ions.</div>`},
+{t:"3.9 Deep dive — why Unit 3 decides your score", h:`
+<p>Unit 3 is 18–22% of the exam because it's where <i>structure meets behavior</i> — and the FRQs chain it with everything else. The three reasoning patterns to master:</p>
+<ul>
+<li><b>Compare two substances:</b> identify each one's strongest IMF → link to the property asked (bp, vapor pressure, solubility, viscosity). Always name both substances' forces explicitly; one-sided answers earn half credit.</li>
+<li><b>Explain a graph:</b> vapor pressure curves, boiling point vs molar mass in a family (LDF growth), the H-bond anomaly spike for NH<sub>3</sub>/H<sub>2</sub>O/HF.</li>
+<li><b>Particle-level pictures:</b> evaporation as the high-energy tail escaping (Maxwell–Boltzmann applies to liquids too — that's <i>why</i> evaporation cools what's left).</li></ul>
+<div class="ls-ex"><b>Chained FRQ pattern (try it on paper).</b> "Ethanol (C<sub>2</sub>H<sub>5</sub>OH, bp 78°C) and dimethyl ether (CH<sub>3</sub>OCH<sub>3</sub>, bp −24°C) have the same formula C<sub>2</sub>H<sub>6</sub>O. Explain the 100° gap." Model answer: same molar mass → same LDF; ethanol has an O–H bond → hydrogen bonding between molecules; the ether has an O but no H <i>on</i> the O → only dipole–dipole; more energy is required to separate ethanol molecules. Four sentences, four rubric points.</div>`},
+],
+u4: [
+{t:"4.6 Balancing redox half-reactions (acidic solution)", h:`
+<p>The five-step recipe — memorize the order, not the outcomes:</p>
+<ul><li>① Balance all atoms except O and H.</li>
+<li>② Balance O by adding H<sub>2</sub>O.</li>
+<li>③ Balance H by adding H<sup>+</sup>.</li>
+<li>④ Balance charge by adding e<sup>−</sup>.</li>
+<li>⑤ Multiply the two half-reactions so electrons cancel; add.</li></ul>
+<div class="ls-ex"><b>Worked example.</b> MnO<sub>4</sub><sup>−</sup> + Fe<sup>2+</sup> → Mn<sup>2+</sup> + Fe<sup>3+</sup> (acidic).<br>
+Reduction: MnO<sub>4</sub><sup>−</sup> + 8H<sup>+</sup> + 5e<sup>−</sup> → Mn<sup>2+</sup> + 4H<sub>2</sub>O.<br>
+Oxidation: Fe<sup>2+</sup> → Fe<sup>3+</sup> + e<sup>−</sup> (×5).<br>
+Overall: <b>MnO<sub>4</sub><sup>−</sup> + 8H<sup>+</sup> + 5Fe<sup>2+</sup> → Mn<sup>2+</sup> + 4H<sub>2</sub>O + 5Fe<sup>3+</sup></b>. Check: charge −1+8+10 = +17 on both sides ✓.</div>
+<div class="ls-trap"><b>Trap.</b> Electrons must appear on the <i>product</i> side of oxidation and the <i>reactant</i> side of reduction. If your final equation still contains e<sup>−</sup>, the multiplication step went wrong.</div>`},
+{t:"4.7 Analysis clinic — gravimetric & redox titration", h:`
+<div class="ls-ex"><b>Gravimetric analysis.</b> A 2.00-g fertilizer sample's sulfate is precipitated as BaSO<sub>4</sub> (M = 233.4); the dried precipitate weighs 1.167 g. Mass % of SO<sub>4</sub><sup>2−</sup> (M = 96.1)?<br>
+① mol BaSO<sub>4</sub> = 1.167/233.4 = 5.00×10<sup>−3</sup> = mol SO<sub>4</sub><sup>2−</sup>.<br>
+② mass SO<sub>4</sub><sup>2−</sup> = 5.00×10<sup>−3</sup> × 96.1 = 0.4805 g → <b>24.0%</b>.<br>
+Lab-error follow-up the exam loves: "precipitate not fully dried" → mass too high → calculated % too high. Trace every error through the arithmetic.</div>
+<div class="ls-ex"><b>Redox titration.</b> 25.0 mL of Fe<sup>2+</sup> solution needs 18.0 mL of 0.0200 M KMnO<sub>4</sub> to reach the faint-purple endpoint. [Fe<sup>2+</sup>]?<br>
+① mol MnO<sub>4</sub><sup>−</sup> = 0.0180 × 0.0200 = 3.60×10<sup>−4</sup>.<br>
+② Ratio 5 Fe : 1 Mn → mol Fe<sup>2+</sup> = 1.80×10<sup>−3</sup>.<br>
+③ [Fe<sup>2+</sup>] = 1.80×10<sup>−3</sup>/0.0250 = <b>0.0720 M</b>.<br>
+Endpoint logic: MnO<sub>4</sub><sup>−</sup> is self-indicating — while Fe<sup>2+</sup> remains, the purple is consumed; the first persistent pink means "one drop past done."</div>`},
+],
+u5: [
+{t:"5.7 Initial-rates clinic — a full data table, start to finish", h:`
+<div class="ls-ex"><b>Worked example.</b> For A + B → products:<br>
+Exp 1: [A] = 0.10, [B] = 0.10 → rate 2.0×10<sup>−4</sup> M/s<br>
+Exp 2: [A] = 0.20, [B] = 0.10 → rate 8.0×10<sup>−4</sup> M/s<br>
+Exp 3: [A] = 0.20, [B] = 0.20 → rate 8.0×10<sup>−4</sup> M/s<br>
+① Exp 1→2: [A] doubles ([B] fixed), rate ×4 → 2<sup>m</sup> = 4 → <b>m = 2</b>.<br>
+② Exp 2→3: [B] doubles ([A] fixed), rate ×1 → <b>n = 0</b>.<br>
+③ rate = k[A]<sup>2</sup> → k = 2.0×10<sup>−4</sup>/(0.10)<sup>2</sup> = <b>2.0×10<sup>−2</sup> M<sup>−1</sup>s<sup>−1</sup></b>.<br>
+Always finish with k <i>and its units</i> — the units point is free money and constantly dropped.</div>
+<div class="ls-ex"><b>Half-life chain.</b> A first-order drug has k = 0.0347 min⁻¹. t<sub>½</sub> = 0.693/0.0347 = 20 min. How much of a 100-mg dose remains after 1 hour? Three half-lives → 100 → 50 → 25 → <b>12.5 mg</b>. For non-integer times use ln([A]/[A]₀) = −kt.</div>`},
+{t:"5.8 Mechanisms with a fast equilibrium first step", h:`
+<p>When the <i>slow step contains an intermediate</i>, you can't leave it in the rate law — intermediates aren't measurable. The fix: use the fast equilibrium before it.</p>
+<div class="ls-ex"><b>Worked example.</b> 2NO + O<sub>2</sub> → 2NO<sub>2</sub>, proposed:<br>
+Step 1 (fast, equilibrium): NO + NO ⇌ N<sub>2</sub>O<sub>2</sub><br>
+Step 2 (slow): N<sub>2</sub>O<sub>2</sub> + O<sub>2</sub> → 2NO<sub>2</sub><br>
+Slow step: rate = k₂[N<sub>2</sub>O<sub>2</sub>][O<sub>2</sub>]. From step 1's equilibrium: [N<sub>2</sub>O<sub>2</sub>] = K₁[NO]<sup>2</sup>. Substitute:<br>
+<b>rate = k₂K₁[NO]<sup>2</sup>[O<sub>2</sub>]</b> — second order in NO, first in O<sub>2</sub>, and the intermediate is gone.</div>
+<p>Validating a mechanism, the two-question checklist: (1) do the steps add to the overall equation? (2) does the derived rate law match the <i>experimental</i> one? Both yes → mechanism is <i>consistent</i> (never "proven" — say consistent).</p>
+<div class="ls-ex"><b>Catalyst spotting drill.</b> In: Step 1: Cl + O<sub>3</sub> → ClO + O<sub>2</sub>; Step 2: ClO + O → Cl + O<sub>2</sub>. Cl is consumed in step 1 and regenerated in step 2 → <b>catalyst</b>. ClO is produced then consumed → <b>intermediate</b>. (This is real stratospheric ozone chemistry — a favorite context.)</div>`},
+],
+};
+// ================= DEEP-DIVE SECTIONS (Units 6–9) =================
+const DEEP_B = {
+u6: [
+{t:"6.6 Calorimetry clinic — three full setups", h:`
+<div class="ls-ex"><b>① Reaction enthalpy per mole.</b> Mixing 50.0 mL of 1.0 M HCl with 50.0 mL of 1.0 M NaOH raises the mixture (100.0 g, c = 4.18) from 22.0°C to 28.8°C.<br>
+① q<sub>soln</sub> = 100.0 × 4.18 × 6.8 = 2842 J → q<sub>rxn</sub> = −2842 J.<br>
+② mol limiting = 0.0500 L × 1.0 M = 0.050 mol.<br>
+③ ΔH = −2842/0.050 = <b>−57 kJ/mol</b> (the textbook neutralization value ✓).</div>
+<div class="ls-ex"><b>② Identifying a metal.</b> 25.0 g of metal at 100.0°C dropped into 50.0 g of water at 20.0°C; final T = 24.0°C.<br>
+q<sub>water</sub> = 50.0 × 4.18 × 4.0 = 836 J = −q<sub>metal</sub>.<br>
+c<sub>metal</sub> = 836/(25.0 × 76.0) = <b>0.44 J/g·°C</b> → likely iron. ΔT of the metal is 100 → 24 = <b>76 degrees</b>, not 4 — the single most common slip.</div>
+<div class="ls-ex"><b>③ Phase change in the mix.</b> Energy to convert 10.0 g of ice at 0°C to water at 25°C: melt first (10.0 g × 334 J/g = 3340 J), then warm (10.0 × 4.18 × 25 = 1045 J) → <b>≈ 4.4 kJ</b>. Two different formulas for two different stages — q = mcΔT never applies <i>during</i> a phase change.</div>`},
+{t:"6.7 Choosing the right ΔH tool — decision guide", h:`
+<p>Four ways to get a reaction enthalpy; the exam tells you which one by what data it hands you:</p>
+<ul>
+<li>Given <b>other reactions with ΔH</b> → Hess's law (flip/scale/add).</li>
+<li>Given a <b>table of ΔH<sub>f</sub>°</b> → products minus reactants (multiply by coefficients!).</li>
+<li>Given a <b>bond-energy table</b> → broken minus formed (only an estimate — gas phase, average bonds).</li>
+<li>Given <b>calorimeter data</b> (masses, temperatures) → q = mcΔT, then per mole.</li></ul>
+<div class="ls-ex"><b>Formation-enthalpy worked example.</b> CH<sub>4</sub> + 2O<sub>2</sub> → CO<sub>2</sub> + 2H<sub>2</sub>O(l). ΔH<sub>f</sub>°: CH<sub>4</sub> −74.8, CO<sub>2</sub> −393.5, H<sub>2</sub>O(l) −285.8, O<sub>2</sub> = 0.<br>
+ΔH° = [−393.5 + 2(−285.8)] − [−74.8 + 0] = −965.1 + 74.8 = <b>−890 kJ/mol</b>.<br>
+Sign discipline: subtracting a negative reactant enthalpy <i>adds</i> — write the brackets out every time.</div>
+<div class="ls-trap"><b>Trap.</b> Bond-energy answers differ slightly from formation-enthalpy answers by design (averages, gas-phase). If asked why: "bond enthalpies are averages over many compounds and assume all species are gaseous."</div>`},
+],
+u7: [
+{t:"7.6 ICE clinic — when x is NOT small, and K from data", h:`
+<div class="ls-ex"><b>① K from equilibrium amounts.</b> H<sub>2</sub> + I<sub>2</sub> ⇌ 2HI. Start: 1.00 mol H<sub>2</sub> and 1.00 mol I<sub>2</sub> in a 1.00-L flask; at equilibrium, 1.56 mol HI.<br>
+① Change: +1.56 HI → −0.78 each reactant.<br>
+② Equilibrium: [H<sub>2</sub>] = [I<sub>2</sub>] = 0.22 M, [HI] = 1.56 M.<br>
+③ K = (1.56)²/(0.22 × 0.22) = <b>≈ 50</b>.</div>
+<div class="ls-ex"><b>② Perfect-square shortcut (big K, no quadratic).</b> Same reaction, K = 49, start 2.00 M H<sub>2</sub> and 2.00 M I<sub>2</sub>: K = (2x)²/(2−x)² → take √ of both sides: 7 = 2x/(2−x) → x = 14/9 ≈ 1.56. Whenever both sides of the K expression are perfect squares, square-root instead of solving a quadratic.</div>
+<div class="ls-ex"><b>③ When the approximation fails.</b> 0.10 M weak acid, K<sub>a</sub> = 0.020 (unusually large): x²/(0.10 − x) = 0.020. Try x ≈ √(0.002) = 0.045 → that's 45% of 0.10, way past the 5% rule. Solve the quadratic: x² + 0.020x − 0.0020 = 0 → x = <b>0.036 M</b>. Rule: approximate first, check 5%, upgrade to the quadratic only if it fails — and <i>say so</i> in an FRQ.</div>`},
+{t:"7.7 Ksp clinic — will it precipitate?", h:`
+<div class="ls-ex"><b>Mixing prediction with dilution.</b> Mix 50.0 mL of 2.0×10<sup>−4</sup> M AgNO<sub>3</sub> with 50.0 mL of 2.0×10<sup>−4</sup> M NaCl. K<sub>sp</sub>(AgCl) = 1.8×10<sup>−10</sup>. Precipitate?<br>
+① Mixing doubles the volume → each ion halves: [Ag<sup>+</sup>] = [Cl<sup>−</sup>] = 1.0×10<sup>−4</sup> M.<br>
+② Q = (1.0×10<sup>−4</sup>)² = 1.0×10<sup>−8</sup>.<br>
+③ Q &gt; K<sub>sp</sub> → <b>yes, AgCl precipitates</b> (until the product falls back to K<sub>sp</sub>).<br>
+Forgetting the dilution step is the intended failure mode — always halve (or re-compute) after mixing.</div>
+<div class="ls-ex"><b>Stoichiometry-aware solubility.</b> Compare AgCl (K<sub>sp</sub> = 1.8×10<sup>−10</sup>) and Ag<sub>2</sub>CrO<sub>4</sub> (K<sub>sp</sub> = 1.1×10<sup>−12</sup>): which is more soluble in mol/L?<br>
+AgCl: s = √(1.8×10<sup>−10</sup>) = 1.3×10<sup>−5</sup>. Ag<sub>2</sub>CrO<sub>4</sub>: 4s³ = 1.1×10<sup>−12</sup> → s = 6.5×10<sup>−5</sup>.<br>
+<b>Ag<sub>2</sub>CrO<sub>4</sub> is MORE soluble despite the smaller K<sub>sp</sub></b> — you cannot compare K<sub>sp</sub> values across different salt stoichiometries without converting to s.</div>`},
+],
+u8: [
+{t:"8.7 Titration calculation clinic — the full pH journey", h:`
+<p>Titrating 50.0 mL of 0.100 M acetic acid (K<sub>a</sub> = 1.8×10<sup>−5</sup>, pK<sub>a</sub> = 4.74) with 0.100 M NaOH — pH at every landmark:</p>
+<div class="ls-ex"><b>① Start (0 mL).</b> Weak acid alone: x = √(1.8×10<sup>−5</sup> × 0.100) = 1.3×10<sup>−3</sup> → <b>pH 2.87</b>.</div>
+<div class="ls-ex"><b>② After 20.0 mL base (before half).</b> mol HA = 5.00 − 2.00 = 3.00 mmol; mol A<sup>−</sup> = 2.00 mmol. Buffer! pH = 4.74 + log(2.00/3.00) = 4.74 − 0.18 = <b>4.56</b>.</div>
+<div class="ls-ex"><b>③ Half-equivalence (25.0 mL).</b> [HA] = [A<sup>−</sup>] → <b>pH = pK<sub>a</sub> = 4.74</b>. No calculation needed — recognize it.</div>
+<div class="ls-ex"><b>④ Equivalence (50.0 mL).</b> All converted: 5.00 mmol A<sup>−</sup> in 100.0 mL → 0.0500 M. Now a weak-base problem: K<sub>b</sub> = K<sub>w</sub>/K<sub>a</sub> = 5.6×10<sup>−10</sup>; x = √(5.6×10<sup>−10</sup> × 0.0500) = 5.3×10<sup>−6</sup> = [OH<sup>−</sup>] → pOH 5.28 → <b>pH 8.72</b>.</div>
+<div class="ls-ex"><b>⑤ Past equivalence (60.0 mL).</b> Excess OH<sup>−</sup> = 1.00 mmol in 110.0 mL = 9.1×10<sup>−3</sup> M → pOH 2.04 → <b>pH 11.96</b>. The weak base's contribution is negligible next to excess strong base.</div>
+<p>This five-stop journey is the single highest-yield calculation sequence in the course — it appears, in pieces, almost every year.</p>`},
+{t:"8.8 Salts, polyprotics & buffer design", h:`
+<div class="ls-ex"><b>pH of a salt solution.</b> 0.10 M NaF, K<sub>a</sub>(HF) = 6.8×10<sup>−4</sup>. F<sup>−</sup> is a weak base: K<sub>b</sub> = 1.0×10<sup>−14</sup>/6.8×10<sup>−4</sup> = 1.5×10<sup>−11</sup>. x = √(1.5×10<sup>−11</sup> × 0.10) = 1.2×10<sup>−6</sup> → pOH 5.92 → <b>pH 8.08</b> — mildly basic, as a strong-base/weak-acid salt should be.</div>
+<p><b>Polyprotic logic.</b> H<sub>3</sub>PO<sub>4</sub> ionizes in three steps with K<sub>a1</sub> ≫ K<sub>a2</sub> ≫ K<sub>a3</sub> (each successive H<sup>+</sup> leaves a more negative ion — harder by Coulomb). Practical consequence: pH of a polyprotic acid solution is set almost entirely by the <i>first</i> ionization. Amphoteric species like HCO<sub>3</sub><sup>−</sup> can act as acid or base; which one wins depends on what it meets.</p>
+<div class="ls-ex"><b>Buffer design (reverse HH).</b> Design a pH 5.00 buffer from acetic acid (pK<sub>a</sub> 4.74): 5.00 = 4.74 + log(ratio) → ratio [A<sup>−</sup>]/[HA] = 10<sup>0.26</sup> ≈ 1.8. So e.g. 0.18 mol acetate + 0.10 mol acetic acid per liter. Rules of thumb: pick an acid with pK<sub>a</sub> within ±1 of the target; more concentrated = more capacity; equal concentrations = equal resistance both ways.</div>
+<div class="ls-trap"><b>Trap.</b> Adding a little strong base to a buffer converts HA → A<sup>−</sup> mole-for-mole. Recompute the ratio, not an ICE table — buffers are stoichiometry first, equilibrium second.</div>`},
+],
+u9: [
+{t:"9.6 The full thermodynamic chain — one problem, every equation", h:`
+<div class="ls-ex"><b>Worked example.</b> N<sub>2</sub>(g) + 3H<sub>2</sub>(g) → 2NH<sub>3</sub>(g). ΔH° = −92 kJ/mol; ΔS° = −199 J/mol·K.<br>
+① Favorable at 25°C? ΔG° = −92 000 − 298(−199) = −92 000 + 59 300 = <b>−32.7 kJ/mol → yes</b>.<br>
+② At what T does it stop being favorable? ΔG° = 0 → T = ΔH°/ΔS° = 92 000/199 ≈ <b>462 K (~189°C)</b>. Above that, the −TΔS term wins.<br>
+③ K at 298 K: ln K = −ΔG°/RT = 32 700/(8.314 × 298) = 13.2 → K = e<sup>13.2</sup> ≈ <b>5 × 10<sup>5</sup></b> &gt; 1 ✓ consistent with negative ΔG°.<br>
+Unit discipline: ΔH° arrives in kJ, ΔS° in J — convert ONE of them before mixing. This single conversion error sinks more Unit 9 FRQs than any concept.</div>
+<p><b>Kinetic vs thermodynamic control</b> — the sentence the exam wants: "The reaction is thermodynamically favorable (ΔG° &lt; 0) but kinetically slow because of a large activation energy." Diamond → graphite, rust, and H<sub>2</sub> + O<sub>2</sub> at room temperature all live here.</p>`},
+{t:"9.7 Electrochemistry clinic — cells and electrolysis, quantitatively", h:`
+<div class="ls-ex"><b>① Build a cell from a table.</b> Given E°: Ag<sup>+</sup>/Ag = +0.80 V, Ni<sup>2+</sup>/Ni = −0.25 V. The higher potential reduces → Ag is the cathode.<br>
+E°<sub>cell</sub> = 0.80 − (−0.25) = <b>+1.05 V</b>. Balanced: 2Ag<sup>+</sup> + Ni → 2Ag + Ni<sup>2+</sup> (n = 2 — from the electrons transferred, and note E° was NOT doubled for silver).<br>
+ΔG° = −nFE° = −2 × 96 485 × 1.05 ≈ <b>−203 kJ</b>.</div>
+<div class="ls-ex"><b>② Electrolysis timing.</b> How long to plate 5.00 g of Cu (M = 63.5) from Cu<sup>2+</sup> at 3.00 A?<br>
+① mol Cu = 0.0787 → mol e<sup>−</sup> = 0.157 (2 e<sup>−</sup> per Cu).<br>
+② charge = 0.157 × 96 485 = 15 200 C.<br>
+③ t = q/I = 15 200/3.00 ≈ 5070 s ≈ <b>84.5 min</b>.</div>
+<div class="ls-ex"><b>③ Non-standard conditions, qualitatively.</b> For Zn/Cu²⁺ (E° = +1.10 V): raise [Cu<sup>2+</sup>] → Q decreases → the reaction is pushed harder forward → <b>E &gt; E°</b>. Let the products accumulate → Q grows → E shrinks toward zero — a dying battery is a cell approaching equilibrium (E = 0, Q = K).</div>
+<div class="ls-trap"><b>Trap.</b> In ELECTROLYSIS the signs flip roles: the anode is + and cathode is −, but oxidation STILL happens at the anode and reduction at the cathode. Define electrodes by the reaction, never by the sign.</div>`},
+],
+};
+// ================= FRQ PRACTICE (original, AP-style, with scoring rubrics) =================
+const FRQS = {
+u1: { title:"FRQ Practice — element X from evidence", intro:`A pure element X has the following properties: its mass spectrum shows peaks at 28 (92.2%), 29 (4.7%) and 30 (3.1%); its photoelectron spectrum shows five peaks with relative heights 2 : 2 : 6 : 2 : 2.`, parts:[
+ {q:"(a) Calculate the average atomic mass of X and identify the element.", pts:2, ans:"28(0.922) + 29(0.047) + 30(0.031) ≈ 28.1 → silicon. [1 pt calculation, 1 pt identification]"},
+ {q:"(b) Write the complete ground-state electron configuration of X and explain how the PES peak heights support it.", pts:2, ans:"1s²2s²2p⁶3s²3p². Peak heights 2:2:6:2:2 match the electron counts of each subshell. [1 pt configuration, 1 pt height↔count link]"},
+ {q:"(c) A student claims the 1s peak appears at the LOWEST binding energy because 1s fills first. Correct the claim.", pts:2, ans:"Wrong: 1s electrons are closest to the nucleus, feel the greatest Coulombic attraction, and therefore appear at the HIGHEST binding energy. [1 pt correct position, 1 pt Coulombic reasoning]"},
+ {q:"(d) Predict whether the first ionization energy of X is larger or smaller than that of phosphorus, and justify.", pts:1, ans:"Smaller. P has one more proton with electrons in the same shell (greater Z_eff), so P holds its valence electrons more tightly. [1 pt prediction + justification together]"},
+]},
+u2: { title:"FRQ Practice — structure of two carbon oxides", intro:`Consider carbon dioxide (CO₂) and the carbonate ion (CO₃²⁻).`, parts:[
+ {q:"(a) Draw the Lewis structure of each species (describe them in words if practicing mentally): bonds and lone pairs.", pts:2, ans:"CO₂: O=C=O, each O with 2 lone pairs. CO₃²⁻: one C=O and two C–O⁻ (three resonance forms), each singly-bonded O carrying 3 lone pairs. [1 pt each]"},
+ {q:"(b) Predict the molecular geometry and bond angle of each.", pts:2, ans:"CO₂: linear, 180° (2 domains). CO₃²⁻: trigonal planar, 120° (3 domains, no lone pairs on C). [1 pt each]"},
+ {q:"(c) Experimentally, all three C–O bonds in carbonate are identical, with a length between typical C–O and C=O. Explain.", pts:2, ans:"The true structure is a resonance hybrid: the double-bond character is delocalized equally over three positions → bond order 4/3 for each. [1 pt resonance/delocalization, 1 pt equal intermediate bonds]"},
+ {q:"(d) Is CO₂ polar? Justify in terms of bond dipoles.", pts:1, ans:"Nonpolar: the two polar C=O bond dipoles are equal and opposite in the linear geometry, so they cancel. [1 pt]"},
+]},
+u3: { title:"FRQ Practice — three liquids, one argument", intro:`Consider three substances of similar molar mass: butane (C₄H₁₀, M=58), acetone (CH₃COCH₃, M=58), and 1-propanol (C₃H₇OH, M=60). Their boiling points are −1°C, 56°C, and 97°C (in some order).`, parts:[
+ {q:"(a) Assign each boiling point to the correct substance.", pts:1, ans:"Butane −1°C, acetone 56°C, 1-propanol 97°C. [1 pt all three]"},
+ {q:"(b) Justify the assignment by identifying the strongest intermolecular force in EACH substance.", pts:3, ans:"Butane: nonpolar → London dispersion only. Acetone: polar C=O → dipole–dipole (+LDF), but no H on O/N → no H-bonding. 1-propanol: O–H group → hydrogen bonding, the strongest of the three. Similar molar mass makes LDF comparable, so the extra forces decide. [1 pt per substance]"},
+ {q:"(c) Which of the three has the highest vapor pressure at 25°C? Explain.", pts:1, ans:"Butane — weakest IMFs → molecules escape to the gas phase most easily → highest vapor pressure. [1 pt, must connect weak IMF → high VP]"},
+ {q:"(d) When 1-propanol boils, which bonds/forces are overcome? Which are NOT broken?", pts:2, ans:"Hydrogen bonds (and other IMFs) BETWEEN molecules are overcome; covalent O–H and C–C/C–H bonds WITHIN molecules are not broken. [1 pt each side]"},
+]},
+u4: { title:"FRQ Practice — identifying a white solid", intro:`A student has a white solid known to be either Ba(NO₃)₂ or BaCl₂. Dissolving 0.50 g in water and adding excess AgNO₃(aq) produces 0.689 g of white precipitate.`, parts:[
+ {q:"(a) Write the net ionic equation for the reaction that forms the precipitate, and identify the solid.", pts:2, ans:"Ag⁺(aq) + Cl⁻(aq) → AgCl(s). A precipitate forms at all → the solid contains chloride → BaCl₂. (With Ba(NO₃)₂, no reaction: all nitrates and AgNO₃ products stay soluble.) [1 pt equation, 1 pt identification]"},
+ {q:"(b) Show with a calculation that the precipitate mass is consistent with the identification. (BaCl₂ M = 208.2; AgCl M = 143.3)", pts:3, ans:"mol BaCl₂ = 0.50/208.2 = 2.40×10⁻³ → mol Cl⁻ = 4.80×10⁻³ → mass AgCl = 4.80×10⁻³ × 143.3 = 0.688 g ≈ 0.689 g ✓. [1 pt mol conversion, 1 pt 1:2 ratio, 1 pt final comparison]"},
+ {q:"(c) Name the spectator ions during the precipitation.", pts:1, ans:"Ba²⁺ and NO₃⁻. [1 pt]"},
+ {q:"(d) The student forgot to dry the precipitate fully before weighing. How does this affect the calculated moles of chloride? Justify.", pts:1, ans:"Wet precipitate weighs MORE → calculated mol AgCl (and thus Cl⁻) comes out too HIGH. [1 pt with direction + reason]"},
+]},
+u5: { title:"FRQ Practice — decomposition kinetics", intro:`The decomposition 2N₂O₅(g) → 4NO₂(g) + O₂(g) is studied. A plot of ln[N₂O₅] versus time gives a straight line with slope −6.9×10⁻³ s⁻¹.`, parts:[
+ {q:"(a) What is the order of the reaction in N₂O₅? Justify from the plot.", pts:1, ans:"First order — only for first-order reactions is ln[A] vs t linear. [1 pt]"},
+ {q:"(b) Write the rate law and give the value of k with units.", pts:2, ans:"rate = k[N₂O₅]; k = 6.9×10⁻³ s⁻¹ (magnitude of the slope). [1 pt rate law, 1 pt k + units]"},
+ {q:"(c) Calculate the half-life. What fraction of the original N₂O₅ remains after 300 s?", pts:2, ans:"t½ = 0.693/6.9×10⁻³ ≈ 100 s. 300 s = 3 half-lives → (½)³ = 1/8 ≈ 12.5% remains. [1 pt t½, 1 pt fraction]"},
+ {q:"(d) A proposed single-step mechanism is the collision of two N₂O₅ molecules. Is this consistent with the rate law? Explain.", pts:2, ans:"No — an elementary bimolecular step 2N₂O₅ → products would give rate = k[N₂O₅]², second order. The observed first order means the mechanism must involve multiple steps with a unimolecular slow step. [1 pt predicted order, 1 pt conclusion]"},
+]},
+u6: { title:"FRQ Practice — hand warmer chemistry", intro:`A hand warmer works by dissolving CaCl₂(s) in water. A student dissolves 5.55 g of CaCl₂ (M = 111.0) in 100.0 g of water in a coffee-cup calorimeter; the temperature rises from 21.0°C to 30.5°C. (c of solution = 4.18 J/g·°C; assume the solution's mass is 105.6 g.)`, parts:[
+ {q:"(a) Calculate the heat absorbed by the solution.", pts:1, ans:"q = 105.6 × 4.18 × 9.5 ≈ 4.19×10³ J ≈ 4.2 kJ. [1 pt]"},
+ {q:"(b) Calculate ΔH of dissolution in kJ/mol. Include the sign.", pts:2, ans:"mol CaCl₂ = 5.55/111.0 = 0.0500 mol. ΔH = −4.19 kJ/0.0500 mol ≈ −84 kJ/mol (negative: solution warmed, so the process released heat). [1 pt magnitude, 1 pt sign+logic]"},
+ {q:"(c) Is the dissolution exothermic or endothermic? Explain in terms of the energy of breaking and forming interactions.", pts:2, ans:"Exothermic. Energy released forming ion–dipole attractions (hydration) exceeds energy required to break the ionic lattice and separate some water–water hydrogen bonds. [1 pt classification, 1 pt break-vs-form comparison]"},
+ {q:"(d) The calorimeter actually absorbs some heat itself. Does ignoring this make the calculated |ΔH| too large or too small? Justify.", pts:1, ans:"Too small — some released heat went into the cup, not the solution, so q_solution underestimates the true heat released. [1 pt direction + reason]"},
+]},
+u7: { title:"FRQ Practice — an equilibrium under stress", intro:`Consider the endothermic equilibrium: CaCO₃(s) ⇌ CaO(s) + CO₂(g), with Kp = P(CO₂). At 800°C, Kp = 0.22 atm.`, parts:[
+ {q:"(a) Why do CaCO₃ and CaO not appear in the equilibrium expression?", pts:1, ans:"They are pure solids — their activity is 1 and their 'concentration' does not change. [1 pt]"},
+ {q:"(b) A rigid 10.0-L vessel at 800°C contains excess CaCO₃(s) and CO₂ at 0.10 atm. Which direction does the reaction proceed? Justify with Q.", pts:2, ans:"Q = P(CO₂) = 0.10 < Kp = 0.22 → proceeds FORWARD (more CaCO₃ decomposes) until P(CO₂) = 0.22 atm. [1 pt Q comparison, 1 pt direction]"},
+ {q:"(c) The temperature is increased. What happens to Kp? Justify.", pts:2, ans:"Kp increases — the reaction is endothermic (heat acts as a reactant), so higher T favors products. Temperature is the only stress that changes K. [1 pt direction, 1 pt endothermic reasoning]"},
+ {q:"(d) Extra CaCO₃(s) is added at constant T. What happens to P(CO₂)? Explain.", pts:1, ans:"Nothing — adding pure solid does not change any activity in the expression; P(CO₂) stays at Kp. [1 pt]"},
+ {q:"(e) The vessel's volume is halved at constant T. Describe what happens immediately and at the new equilibrium.", pts:2, ans:"Immediately P(CO₂) doubles to 0.44 atm → Q > Kp → reverse reaction (CO₂ + CaO → CaCO₃) consumes gas until P(CO₂) returns to 0.22 atm. Same final pressure, less gas. [1 pt immediate, 1 pt return to Kp]"},
+]},
+u8: { title:"FRQ Practice — analyzing a weak acid", intro:`A student titrates 25.0 mL of a monoprotic weak acid HA with 0.100 M NaOH. The equivalence point comes at 30.0 mL of base; when 15.0 mL of base has been added, the pH is 4.80.`, parts:[
+ {q:"(a) Calculate the initial concentration of HA.", pts:2, ans:"mol HA = mol base at equivalence = 0.0300 L × 0.100 = 3.00×10⁻³ mol → [HA] = 3.00×10⁻³/0.0250 = 0.120 M. [1 pt mole equality, 1 pt concentration]"},
+ {q:"(b) Determine the pKa (and Ka) of HA. Justify your reasoning.", pts:2, ans:"15.0 mL is exactly HALF of 30.0 mL → half-equivalence → [HA] = [A⁻] → pH = pKa = 4.80 → Ka = 10⁻⁴·⁸ ≈ 1.6×10⁻⁵. [1 pt half-equivalence recognition, 1 pt Ka]"},
+ {q:"(c) Will the pH at the equivalence point be equal to, greater than, or less than 7? Explain.", pts:2, ans:"Greater than 7: at equivalence only A⁻ remains, a weak base that accepts protons from water, producing OH⁻. [1 pt prediction, 1 pt conjugate-base reasoning]"},
+ {q:"(d) Between phenolphthalein (color change pH ≈ 8.2–10) and methyl red (pH ≈ 4.4–6.2), which indicator should be used? Why?", pts:1, ans:"Phenolphthalein — its color-change range brackets the basic equivalence pH (~8.7). Methyl red would change far too early. [1 pt choice + reason]"},
+ {q:"(e) Describe how to prepare a buffer of pH 4.80 using HA and NaOH.", pts:1, ans:"Half-neutralize: add NaOH equal to half the moles of HA (e.g., 15.0 mL of 0.100 M NaOH per 25.0 mL of 0.120 M HA) → equal HA and A⁻ → pH = pKa = 4.80. [1 pt]"},
+]},
+u9: { title:"FRQ Practice — a zinc–silver cell", intro:`A galvanic cell uses Zn/Zn²⁺ (E° = −0.76 V) and Ag/Ag⁺ (E° = +0.80 V) half-cells, connected by a salt bridge containing KNO₃.`, parts:[
+ {q:"(a) Identify the anode and cathode, and write the overall balanced equation.", pts:2, ans:"Anode: Zn (oxidation, lower E°); cathode: Ag. Overall: Zn + 2Ag⁺ → Zn²⁺ + 2Ag. [1 pt electrodes, 1 pt balanced equation]"},
+ {q:"(b) Calculate E°cell and ΔG° (in kJ). Is the reaction thermodynamically favorable?", pts:3, ans:"E°cell = 0.80 − (−0.76) = 1.56 V (do NOT double silver's E°). n = 2 → ΔG° = −nFE° = −2(96 485)(1.56) ≈ −301 kJ. Negative → favorable. [1 pt E°, 1 pt ΔG° with n=2, 1 pt conclusion]"},
+ {q:"(c) In which direction do the NO₃⁻ ions in the salt bridge migrate? Why?", pts:2, ans:"Toward the ANODE (Zn) half-cell — positive Zn²⁺ ions accumulate there and anions flow in to neutralize the buildup, keeping the circuit closed. [1 pt direction, 1 pt neutrality reasoning]"},
+ {q:"(d) As the cell operates, [Ag⁺] decreases. What happens to the cell voltage over time? Explain using Q.", pts:2, ans:"Voltage decreases: consuming Ag⁺ (reactant) and producing Zn²⁺ (product) raises Q toward K, driving E from E° toward 0 — the cell dies at equilibrium (E = 0, Q = K). [1 pt direction, 1 pt Q reasoning]"},
+]},
+};
+
+// ---- merge deep-dive sections & FRQs into lessons ----
+const DEEP = Object.assign({}, DEEP_A, DEEP_B);
+LESSONS.forEach(l => {
+  if (DEEP[l.id]) l.sections.push(...DEEP[l.id]);
+  l.frq = FRQS[l.id] || null;
+});
 // ================= FLASHCARD DATA =================
 // typed cards: student types the formula; checker normalizes charges/subscripts.
 const DECKS = [
@@ -884,7 +1130,7 @@ const QUIZZES = [
 const EXAM_DATE = new Date(2027, 4, 6); // May 6, 2027
 const INT = [0, 1, 3, 7, 16, 30];       // days per Leitner box 0..5
 
-let state = { version: 1, cards: {}, quizHistory: [], activity: {}, lessons: {}, qstats: {} };
+let state = { version: 1, cards: {}, quizHistory: [], activity: {}, lessons: {}, qstats: {}, frq: {} };
 
 // ---------- persistence (auto-save) ----------
 // Uses the browser's local storage when available (opening the same file/URL in the
@@ -894,7 +1140,7 @@ const STORE_KEY = "apchem-trainer-v1";
 let storageOK = false;
 try { localStorage.setItem("__t", "1"); localStorage.removeItem("__t"); storageOK = true; } catch (e) { storageOK = false; }
 function normalizeState(d) {
-  return { version: 1, cards: d.cards || {}, quizHistory: d.quizHistory || [], activity: d.activity || {}, lessons: d.lessons || {}, qstats: d.qstats || {} };
+  return { version: 1, cards: d.cards || {}, quizHistory: d.quizHistory || [], activity: d.activity || {}, lessons: d.lessons || {}, qstats: d.qstats || {}, frq: d.frq || {} };
 }
 function save() {
   if (!storageOK) return;
@@ -1035,6 +1281,52 @@ function renderLearn() {
     });
     vb.append(ul, el("div", null, "<span style='font-size:12px;color:var(--ink-3)'>Best order: read the section first, watch second — video as confirmation, not as first contact. If a Khan Academy link has moved, open the course home and pick the unit from its menu.</span>"));
     v.append(vb);
+  }
+  if (lesson.frq) {
+    const f = lesson.frq;
+    const maxPts = f.parts.reduce((s, x) => s + x.pts, 0);
+    const prev = state.frq[lesson.id];
+    const box = el("div", "ls-sec");
+    box.append(el("h4", null, "✍️ " + f.title + " · " + maxPts + " points"));
+    box.append(el("div", null, "<p style='font-size:12.5px;color:var(--ink-3)'>Exam conditions: answer <b>on paper, by hand</b> (the real FRQs are handwritten), ~" + (maxPts * 2) + " minutes. Then reveal the rubric and score yourself honestly." + (prev ? " Last attempt: <b>" + prev.got + "/" + prev.max + "</b> (" + prev.ts + ")" : "") + "</p>"));
+    box.append(el("div", null, "<p>" + f.intro + "</p>"));
+    f.parts.forEach(pt => box.append(el("div", null, "<p><b>" + pt.q + "</b> <span style='color:var(--ink-3);font-size:12px'>[" + pt.pts + " pt]</span></p>")));
+    const rub = el("div"); rub.style.display = "none";
+    const checks = [];
+    f.parts.forEach((pt, i) => {
+      const row = el("div", "ls-ex");
+      const cb = document.createElement("input"); cb.type = "checkbox"; cb.id = "frqcb" + i;
+      row.append(cb);
+      const lab = el("label", null, " <b>+" + pt.pts + " pt if you had:</b> " + pt.ans);
+      lab.htmlFor = "frqcb" + i;
+      row.append(lab);
+      checks.push({ cb, pts: pt.pts });
+      rub.append(row);
+    });
+    const saveBtn = el("button", "btn", "Save my FRQ score");
+    saveBtn.addEventListener("click", () => {
+      const got = checks.reduce((s, c) => s + (c.cb.checked ? c.pts : 0), 0);
+      state.frq[lesson.id] = { got, max: maxPts, ts: todayYmd() };
+      logActivity(1); save();
+      alert("Saved: " + got + "/" + maxPts + (got >= maxPts * 0.7 ? " — solid FRQ performance." : " — reread the sections behind the missed points, retry in a few days."));
+      renderLearn();
+    });
+    rub.append(saveBtn);
+    const revealBtn = el("button", "btn ghost", "Show model answers & rubric");
+    revealBtn.addEventListener("click", () => { revealBtn.remove(); rub.style.display = "block"; });
+    box.append(revealBtn, rub);
+    v.append(box);
+  }
+  {
+    const pe = el("div", "ls-sec");
+    pe.append(el("h4", null, "📜 Real past AP exams — calibrate against the real thing"));
+    pe.append(el("div", null,
+      "<p>College Board publishes the <b>real free-response questions of the last 3 years</b> (currently 2023–2025) together with official scoring guidelines, score statistics and real student answers with grader commentary:</p>"
+      + "<ul><li><a href='https://apcentral.collegeboard.org/courses/ap-chemistry/exam/past-exam-questions' target='_blank' rel='noopener'>AP Central — Past AP Chemistry FRQs + scoring guidelines</a></li>"
+      + "<li><a href='https://apstudents.collegeboard.org/courses/ap-chemistry/assessment' target='_blank' rel='noopener'>Official exam format & sample questions (AP Students)</a></li></ul>"
+      + "<p><b>How to use them:</b> after clearing this unit's quiz and the FRQ above, open a recent year's FRQ set, find the parts touching this unit's topics, answer them on paper under time, then grade yourself with the official scoring guideline — that is the most honest calibration that exists.</p>"
+      + "<p style='font-size:12px;color:var(--ink-3)'>Note: real multiple-choice sections are never publicly released by College Board (they are secure). Official MCQ practice lives in AP Classroom, which your teacher unlocks when the school course starts. This app's quizzes are original AP-style items for exactly that reason.</p>"));
+    v.append(pe);
   }
   const next = el("div", "ls-next");
   next.append(el("div", null, "<b>Now make it stick:</b> do the deck(s) below until comfortable, then take the unit quiz (≥ 80% to clear the unit)."));
@@ -1289,7 +1581,7 @@ function renderProgress() {
   // ---- Report card ----
   const rc = el("div", "chart-tile"); rc.style.marginBottom = "14px";
   rc.append(el("h3", null, "📋 Report card"), el("div", "chart-sub", "One row per unit, built from every flashcard and quiz answer. The 'next move' column is the study plan."));
-  const rt = el("table", "reviewtbl", "<tr><th>Unit</th><th>Lesson</th><th>Quiz best</th><th>Weak Qs</th><th>Grade</th><th>Next move</th></tr>");
+  const rt = el("table", "reviewtbl", "<tr><th>Unit</th><th>Lesson</th><th>Quiz best</th><th>FRQ</th><th>Weak Qs</th><th>Grade</th><th>Next move</th></tr>");
   LESSONS.forEach(l => {
     const studied = !!state.lessons[l.id];
     const best = bestScore(l.quiz);
@@ -1297,16 +1589,20 @@ function renderProgress() {
     const mastery = l.decks.reduce((s, did) => s + deckMastery(DECKS.find(d => d.id === did)), 0) / l.decks.length;
     const g = gradeOf(best);
     const gCol = g === "A" || g === "B" ? "var(--good-text)" : g === "C" ? "var(--s2)" : g === "D" ? "var(--crit)" : "var(--ink-3)";
+    const fr = state.frq[l.id];
     const move = !studied ? "Read the lesson (Learn tab)"
       : best == null ? "Take the unit quiz"
       : best < 80 ? "Review your misses, retake in ~3 days"
       : weakN ? "Clear " + weakN + " question(s) via Smart Review"
+      : !fr ? "Do the unit's FRQ practice (Learn tab, bottom)"
+      : fr.got < fr.max * 0.7 ? "FRQ below 70% — reread the sections behind the missed points, retry"
       : mastery < 0.6 ? "Keep drilling deck: " + l.decks.map(did => DECKS.find(d => d.id === did).name).join(", ")
       : "Solid — maintain with daily due cards";
     rt.append(el("tr", null,
       "<td>" + l.name.replace(" ·", "<br><span style='font-size:11px;color:var(--ink-3)'>") + "</span></td>"
       + "<td>" + (studied ? "✓" : "—") + "</td>"
       + "<td>" + (best == null ? "—" : best + "%") + "</td>"
+      + "<td>" + (fr ? fr.got + "/" + fr.max : "—") + "</td>"
       + "<td>" + (weakN || "—") + "</td>"
       + "<td><b style='color:" + gCol + "'>" + (g || "—") + "</b></td>"
       + "<td style='font-size:12.5px'>" + move + "</td>"));
