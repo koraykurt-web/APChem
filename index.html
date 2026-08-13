@@ -175,8 +175,9 @@ a{color:var(--s1);}
 .chk{margin-top:16px; border-top:1px dashed var(--grid); padding-top:12px;}
 .chk-title{font-size:11.5px; font-weight:700; color:var(--s3); text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px;}
 .chk-q{font-weight:600; font-size:14px; margin-bottom:8px;}
-.ls-fig{margin:14px 0 4px; text-align:center;}
-.ls-fig .cap{font-size:12px; color:var(--ink-3); margin-top:2px;}
+.ls-fig{margin:16px 0 6px; text-align:center; background:color-mix(in srgb, var(--s1) 4%, var(--surface-1));
+  border:1px solid var(--ring); border-radius:12px; padding:14px 10px 10px;}
+.ls-fig .cap{font-size:12px; color:var(--ink-2); margin-top:6px; font-style:italic;}
 /* ---- lessons ---- */
 .ls-row{display:flex; align-items:center; gap:14px; background:var(--surface-1); border:1px solid var(--ring);
   border-radius:10px; padding:12px 16px; margin-bottom:8px; cursor:pointer;}
@@ -957,6 +958,209 @@ const CHECKS = {
 "9.6": {q:"For ΔH = +50 kJ/mol and ΔS = +100 J/mol·K, the reaction becomes favorable above:", o:["500 K","0.5 K","5000 K","50 K"], ans:0, ex:"T = ΔH/ΔS = 50 000 J / 100 J/K = 500 K. Convert kJ → J first — always."},
 "9.7": {q:"As a battery discharges, Q approaches K and the voltage:", o:["decreases toward zero","increases","stays at E°","oscillates"], ans:0, ex:"A dead battery IS a cell at equilibrium: Q = K, E = 0."},
 };
+// ================= UNIT 0 FOUNDATIONS + BIG-PICTURE INTROS + NEW DIAGRAMS =================
+const DIAG2 = {
+atom: fig(`<svg viewBox="0 0 300 170" style="max-width:300px;width:100%">
+<circle cx="150" cy="85" r="14" fill="var(--s2)"/>
+<text x="150" y="89" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">p⁺ n⁰</text>
+<circle cx="150" cy="85" r="42" fill="none" stroke="var(--baseline)" stroke-width="1.5" stroke-dasharray="4 4"/>
+<circle cx="150" cy="85" r="72" fill="none" stroke="var(--baseline)" stroke-width="1.5" stroke-dasharray="4 4"/>
+<circle cx="150" cy="43" r="5" fill="var(--s1)"/><circle cx="150" cy="127" r="5" fill="var(--s1)"/>
+<circle cx="82" cy="65" r="5" fill="var(--s1)"/><circle cx="218" cy="65" r="5" fill="var(--s1)"/>
+<circle cx="99" cy="133" r="5" fill="var(--s1)"/><circle cx="201" cy="133" r="5" fill="var(--s1)"/><circle cx="150" cy="13" r="5" fill="var(--s1)"/>
+<text x="36" y="30" ${_ink}>e⁻ shells (n = 1, 2…)</text>
+<text x="188" y="98" ${_ink}>nucleus: protons + neutrons</text>
+</svg>`, "The atom: a tiny heavy nucleus, electrons in shells around it — chemistry happens in the outermost shell"),
+
+bondTypes: fig(`<svg viewBox="0 0 340 150" style="max-width:340px;width:100%">
+<circle cx="55" cy="60" r="16" fill="var(--s1)"/><text x="55" y="64" text-anchor="middle" font-size="10" fill="#fff">Na</text>
+<circle cx="125" cy="60" r="16" fill="var(--s3)"/><text x="125" y="64" text-anchor="middle" font-size="10" fill="#fff">Cl</text>
+<path d="M72,50 Q90,38 108,50" fill="none" stroke="var(--s2)" stroke-width="2"/><path d="M108,50 l-8,-2 4,7 z" fill="var(--s2)"/>
+<circle cx="88" cy="42" r="4" fill="var(--s1)"/>
+<text x="90" y="105" text-anchor="middle" ${_ink}>IONIC: electron is TRANSFERRED →</text>
+<text x="90" y="118" text-anchor="middle" ${_ink}>Na⁺ and Cl⁻ then attract (metal + nonmetal)</text>
+<circle cx="230" cy="60" r="16" fill="var(--s3)"/><text x="230" y="64" text-anchor="middle" font-size="10" fill="#fff">H</text>
+<circle cx="290" cy="60" r="16" fill="var(--s3)"/><text x="290" y="64" text-anchor="middle" font-size="10" fill="#fff">Cl</text>
+<circle cx="256" cy="60" r="4" fill="var(--s1)"/><circle cx="264" cy="60" r="4" fill="var(--s1)"/>
+<text x="260" y="105" text-anchor="middle" ${_ink}>COVALENT: electrons are SHARED</text>
+<text x="260" y="118" text-anchor="middle" ${_ink}>(nonmetal + nonmetal)</text>
+</svg>`, "The two main bond types — transfer vs sharing. Metallic bonding (electron sea) is the third"),
+
+dissolve: fig(`<svg viewBox="0 0 300 160" style="max-width:300px;width:100%">
+<circle cx="150" cy="80" r="17" fill="var(--s2)"/><text x="150" y="85" text-anchor="middle" font-size="11" fill="#fff">Na⁺</text>
+<g transform="translate(150,28)"><circle r="9" fill="var(--crit)"/><circle cx="-11" cy="-9" r="5" fill="var(--ink-3)"/><circle cx="11" cy="-9" r="5" fill="var(--ink-3)"/><text x="16" y="4" ${_ink}>δ−</text></g>
+<g transform="translate(150,133)"><circle r="9" fill="var(--crit)"/><circle cx="-11" cy="9" r="5" fill="var(--ink-3)"/><circle cx="11" cy="9" r="5" fill="var(--ink-3)"/></g>
+<g transform="translate(95,80)"><circle r="9" fill="var(--crit)"/><circle cx="-9" cy="-11" r="5" fill="var(--ink-3)"/><circle cx="-9" cy="11" r="5" fill="var(--ink-3)"/></g>
+<g transform="translate(205,80)"><circle r="9" fill="var(--crit)"/><circle cx="9" cy="-11" r="5" fill="var(--ink-3)"/><circle cx="9" cy="11" r="5" fill="var(--ink-3)"/></g>
+<text x="150" y="155" text-anchor="middle" ${_ink}>each water points its δ− oxygen at the positive ion (ion–dipole force)</text>
+</svg>`, "What 'dissolving' really is: water molecules surround each ion — this is why the ions separate"),
+
+phscale: fig(`<svg viewBox="0 0 340 105" style="max-width:340px;width:100%">
+<defs><linearGradient id="phg" x1="0" x2="1"><stop offset="0" stop-color="var(--crit)"/><stop offset="0.5" stop-color="var(--s3)"/><stop offset="1" stop-color="var(--s1)"/></linearGradient></defs>
+<rect x="20" y="35" width="300" height="16" rx="8" fill="url(#phg)" opacity="0.85"/>
+<line x1="170" y1="28" x2="170" y2="58" stroke="var(--ink-1)" stroke-width="2"/>
+<text x="20" y="25" ${_ink}>0</text><text x="166" y="25" ${_ink}>7</text><text x="312" y="25" ${_ink}>14</text>
+<text x="60" y="70" text-anchor="middle" ${_ink}>ACIDIC · more H₃O⁺</text>
+<text x="170" y="70" text-anchor="middle" ${_ink}>neutral</text>
+<text x="280" y="70" text-anchor="middle" ${_ink}>BASIC · more OH⁻</text>
+<text x="42" y="92" ${_ink}>stomach acid ~1 · cola ~2.5 · water 7 · blood 7.4 · bleach ~13</text>
+</svg>`, "The pH scale is logarithmic: each step = ×10 in H₃O⁺ concentration"),
+
+aufbau: fig(`<svg viewBox="0 0 320 120" style="max-width:320px;width:100%">
+<text x="20" y="30" font-size="13" fill="var(--ink-1)" font-weight="bold">1s</text>
+<text x="60" y="30" font-size="13" fill="var(--ink-1)" font-weight="bold">2s</text><text x="100" y="30" font-size="13" fill="var(--ink-1)" font-weight="bold">2p</text>
+<text x="140" y="30" font-size="13" fill="var(--ink-1)" font-weight="bold">3s</text><text x="180" y="30" font-size="13" fill="var(--ink-1)" font-weight="bold">3p</text>
+<text x="220" y="30" font-size="13" fill="var(--s2)" font-weight="bold">4s</text><text x="260" y="30" font-size="13" fill="var(--s2)" font-weight="bold">3d</text><text x="298" y="30" font-size="13" fill="var(--ink-1)" font-weight="bold">4p</text>
+<path d="M30,38 L288,38" stroke="var(--s1)" stroke-width="2"/><path d="M288,38 l-8,-4 v8 z" fill="var(--s1)"/>
+<text x="150" y="55" text-anchor="middle" ${_ink}>fill order (energy order, not shell order!)</text>
+<text x="20" y="80" font-size="11" fill="var(--ink-2)">capacities: s holds 2 · p holds 6 · d holds 10</text>
+<text x="20" y="100" font-size="11" fill="var(--s2)">note the twist: 4s fills BEFORE 3d — and empties first when ions form</text>
+</svg>`, "Aufbau order — electrons fill lowest-energy subshells first"),
+
+qvsk: fig(`<svg viewBox="0 0 320 95" style="max-width:320px;width:100%">
+<line x1="25" y1="45" x2="295" y2="45" stroke="var(--baseline)" stroke-width="2"/>
+<circle cx="200" cy="45" r="6" fill="var(--ink-1)"/><text x="200" y="30" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--ink-1)">K</text>
+<circle cx="80" cy="45" r="6" fill="var(--s2)"/><text x="80" y="30" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--s2)">Q</text>
+<path d="M92,60 L185,60" stroke="var(--s2)" stroke-width="2"/><path d="M185,60 l-8,-4 v8 z" fill="var(--s2)"/>
+<text x="138" y="76" text-anchor="middle" ${_ink}>Q &lt; K → reaction runs FORWARD until Q reaches K</text>
+<text x="288" y="90" text-anchor="end" ${_ink}>(Q &gt; K → runs in reverse)</text>
+</svg>`, "The whole logic of equilibrium in one line: the reaction moves Q toward K"),
+
+molemap: fig(`<svg viewBox="0 0 340 110" style="max-width:340px;width:100%">
+<rect x="15" y="35" width="80" height="34" rx="8" fill="none" stroke="var(--s1)" stroke-width="2"/>
+<text x="55" y="56" text-anchor="middle" font-size="12" fill="var(--ink-1)" font-weight="bold">grams</text>
+<rect x="130" y="35" width="80" height="34" rx="8" fill="var(--s1)"/>
+<text x="170" y="56" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">MOLES</text>
+<rect x="245" y="8" width="88" height="30" rx="8" fill="none" stroke="var(--s3)" stroke-width="2"/>
+<text x="289" y="27" text-anchor="middle" font-size="11" fill="var(--ink-1)">particles</text>
+<rect x="245" y="66" width="88" height="30" rx="8" fill="none" stroke="var(--s2)" stroke-width="2"/>
+<text x="289" y="85" text-anchor="middle" font-size="11" fill="var(--ink-1)">L of gas</text>
+<line x1="95" y1="52" x2="130" y2="52" stroke="var(--ink-3)" stroke-width="1.5"/>
+<line x1="210" y1="45" x2="245" y2="25" stroke="var(--ink-3)" stroke-width="1.5"/>
+<line x1="210" y1="60" x2="245" y2="79" stroke="var(--ink-3)" stroke-width="1.5"/>
+<text x="112" y="44" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">÷ M</text>
+<text x="222" y="22" font-size="9.5" fill="var(--ink-3)">× 6.022×10²³</text>
+<text x="216" y="86" font-size="9.5" fill="var(--ink-3)">× 22.4 (STP)</text>
+</svg>`, "Every stoichiometry problem passes through moles — the central train station"),
+};
+
+// ---------------- UNIT 0 — FOUNDATIONS ----------------
+const LESSON_U0 = { id:"u0", name:"Unit 0 · Foundations (start here if chemistry is new)", weight:"not on the exam — but everything builds on it", decks:["ions"], quiz:null,
+videos:[
+ {t:"OpenStax Chemistry 2e — free full textbook (Ch. 1–4 for this unit)", u:"https://openstax.org/details/books/chemistry-2e"},
+ {t:"Khan Academy — AP Chemistry course home", u:"https://www.khanacademy.org/science/ap-chemistry-beta"},
+], sections:[
+{t:"0.1 What chemistry studies — matter, atoms, elements", h:`
+<p>Everything you can touch is <b>matter</b>, and all matter is built from about 100 kinds of tiny particles called <b>atoms</b>. A substance made of only one kind of atom is an <b>element</b> (iron, oxygen, gold). When atoms of different elements link together in fixed ratios, you get a <b>compound</b> — water (H<sub>2</sub>O) is hydrogen and oxygen locked together 2-to-1, and it behaves nothing like either parent element.</p>
+<p>An atom itself has structure: a tiny, heavy, positively charged <b>nucleus</b> (protons + neutrons) with light, negative <b>electrons</b> moving around it in layers called <b>shells</b>. The number of protons — the <b>atomic number</b> — is the element's identity card: 6 protons is always carbon, 8 is always oxygen.</p>
+${DIAG2.atom}
+<p>A <b>mixture</b> is different from a compound: in a mixture (sea water, air, salad) the ingredients keep their own identities and can be separated physically; in a compound they're chemically bound and separating them requires a chemical reaction.</p>
+<div class="ls-ex"><b>Quick sorting drill.</b> Oxygen gas (O<sub>2</sub>) → element. Table salt (NaCl) → compound. Orange juice → mixture. Diamond (pure C) → element. Rust (Fe<sub>2</sub>O<sub>3</sub>) → compound.</div>`},
+{t:"0.2 Reading the periodic table", h:`
+<p>The periodic table is not a poster to memorize — it's a <b>data sheet</b> you'll use in every single problem (and it's given to you in the exam). For each element box, you need two numbers: the <b>atomic number</b> (top, whole number — the proton count) and the <b>atomic mass</b> (bottom, decimal — the average mass in grams per mole).</p>
+<ul>
+<li><b>Rows are periods:</b> each new row starts a new electron shell.</li>
+<li><b>Columns are groups:</b> elements in a column have the same number of outer electrons — which is why they behave alike. Group 1 (Li, Na, K) are all soft, violently reactive metals; Group 17 (F, Cl, Br, I) are all aggressive nonmetals; Group 18 (He, Ne, Ar) barely react at all.</li>
+<li><b>The staircase line</b> on the right separates <b>metals</b> (left — shiny, conduct electricity, lose electrons) from <b>nonmetals</b> (right — gain or share electrons).</li></ul>
+<div class="ls-ex"><b>Try it.</b> Chlorine: atomic number 17 → 17 protons, 17 electrons (when neutral); mass 35.45 → one mole of Cl atoms weighs 35.45 g; Group 17 → 7 outer electrons → hungry for one more.</div>`},
+{t:"0.3 Chemical formulas — the language", h:`
+<p>A formula is a recipe. <b>Subscripts</b> count atoms: H<sub>2</sub>O = 2 hydrogens + 1 oxygen. <b>Parentheses</b> group units: Ca(NO<sub>3</sub>)<sub>2</sub> = 1 calcium + 2 nitrate groups = 1 Ca, 2 N, 6 O. A leading <b>coefficient</b> counts whole molecules: 3H<sub>2</sub>O = 3 water molecules = 6 H and 3 O in total.</p>
+<p>Naming, the two patterns you'll meet constantly:</p>
+<ul>
+<li><b>Ionic compounds</b> (metal + nonmetal): name the metal, then the nonmetal with <i>-ide</i>: NaCl = sodium chloride; MgO = magnesium oxide. If a polyatomic ion is involved, use its name: NaNO<sub>3</sub> = sodium nitrate. Transition metals get a Roman numeral for their charge: FeCl<sub>3</sub> = iron(III) chloride.</li>
+<li><b>Molecular compounds</b> (nonmetal + nonmetal): count with prefixes: CO<sub>2</sub> = carbon <i>di</i>oxide, N<sub>2</sub>O<sub>4</sub> = <i>di</i>nitrogen <i>tetr</i>oxide.</li></ul>
+<div class="ls-trap"><b>Trap.</b> Ionic formulas are RATIOS (NaCl is a lattice, not a molecule); molecular formulas are actual molecules. This distinction matters all the way to Unit 3.</div>`},
+{t:"0.4 Chemical equations & balancing", h:`
+<p>A chemical equation is bookkeeping: <b>reactants → products</b>, with state labels (s) solid, (l) liquid, (g) gas, (aq) dissolved in water. Atoms are never created or destroyed (conservation of mass), so both sides must have equal atom counts — that's <b>balancing</b>, done by adjusting coefficients only (never subscripts — changing a subscript changes the substance!).</p>
+<div class="ls-ex"><b>Worked example: burn methane.</b> CH<sub>4</sub> + O<sub>2</sub> → CO<sub>2</sub> + H<sub>2</sub>O.<br>
+① Carbon: 1 = 1 ✓. ② Hydrogen: 4 left, 2 right → put 2H<sub>2</sub>O. ③ Oxygen: right side now 2+2 = 4 → put 2O<sub>2</sub>.<br>
+Balanced: <b>CH<sub>4</sub> + 2O<sub>2</sub> → CO<sub>2</sub> + 2H<sub>2</sub>O</b>. Strategy: balance the element appearing in the fewest places first; leave lone elements (like O<sub>2</sub>) for last.</div>
+<div class="ls-ex"><b>Practice on paper.</b> Balance: Al + O<sub>2</sub> → Al<sub>2</sub>O<sub>3</sub>. (Answer: 4Al + 3O<sub>2</sub> → 2Al<sub>2</sub>O<sub>3</sub> — fractions are allowed mid-work, then double everything.)</div>`},
+{t:"0.5 The math toolkit — units, sig figs, dimensional analysis", h:`
+<p>Three tools carry the entire course:</p>
+<ul>
+<li><b>Scientific notation:</b> 6.022×10<sup>23</sup> means 6.022 with the decimal moved 23 places right. Practice ×/÷ on your calculator's EE/EXP button until it's automatic.</li>
+<li><b>Significant figures:</b> your answer can't be more precise than your worst measurement. Multiplying/dividing → keep as many sig figs as the least precise input (2.0 × 3.146 = 6.3, not 6.292). The AP graders accept ±1 sig fig, but wildly over-precise answers lose the point.</li>
+<li><b>Dimensional analysis</b> — the superpower: write every number WITH its unit, multiply by conversion fractions, cancel units diagonally until only the target unit survives.</li></ul>
+<div class="ls-ex"><b>Worked example.</b> How many seconds in 2.5 hours?<br>2.5 h × (60 min / 1 h) × (60 s / 1 min) = 9.0×10<sup>3</sup> s. Hours cancel, minutes cancel, seconds remain. Do EVERY chemistry calculation in this style — units that don't cancel are how you catch your own mistakes before the grader does.</div>`},
+{t:"0.6 Ions — when atoms gain or lose electrons", h:`
+<p>Atoms are electrically neutral (protons = electrons). But many atoms are more stable after gaining or losing electrons to reach a full outer shell — the result is an <b>ion</b>. Lose electrons → positive <b>cation</b> (metals do this: Na → Na<sup>+</sup>). Gain electrons → negative <b>anion</b> (nonmetals: Cl → Cl<sup>−</sup>).</p>
+<p>The periodic table predicts the charges: Group 1 → +1, Group 2 → +2, Al → +3, Group 16 → −2, Group 17 → −1. Ionic compounds form in whatever ratio makes the total charge zero: Ca<sup>2+</sup> + Cl<sup>−</sup> → CaCl<sub>2</sub> (one 2+ needs two 1−).</p>
+${DIAG2.bondTypes}
+<div class="ls-ex"><b>Build-a-formula drill.</b> Aluminum oxide: Al<sup>3+</sup> and O<sup>2−</sup> → lowest common multiple of 3 and 2 is 6 → Al<sub>2</sub>O<sub>3</sub>. Ammonium sulfate: NH<sub>4</sub><sup>+</sup> and SO<sub>4</sub><sup>2−</sup> → (NH<sub>4</sub>)<sub>2</sub>SO<sub>4</sub>.</div>
+<p><b>Start the Polyatomic Ions deck now</b> — those charged groups (nitrate, sulfate, ammonium…) act as single units and appear in every later unit.</p>`},
+{t:"0.7 Solutions — what (aq) really means", h:`
+<p>When salt disappears into water it hasn't ceased to exist — the crystal has been taken apart into individual ions, each escorted by a shell of water molecules. That's what the label <b>(aq)</b>, "aqueous", means: dissolved and surrounded by water.</p>
+${DIAG2.dissolve}
+<p>How much is dissolved is measured by <b>molarity</b>: M = moles of solute per liter of solution. A "1.0 M NaCl" bottle contains 1 mole (58.5 g) of NaCl in every liter. You'll meet the full machinery in Unit 3; for now the takeaway is: <b>(aq) = separated, hydrated ions</b> for ionic compounds, or intact hydrated molecules for things like sugar.</p>
+<div class="ls-ex"><b>Sanity check.</b> Which conducts electricity: salt water or sugar water? Salt water — its dissolved ions are mobile charges. Sugar dissolves as whole neutral molecules → no conduction. This single idea (electrolyte vs non-electrolyte) returns in Unit 4.</div>`},
+]};
+
+// checks for U0
+Object.assign(CHECKS, {
+"0.1": {q:"Rust (Fe<sub>2</sub>O<sub>3</sub>) is best classified as:", o:["a compound","an element","a mixture","an atom"], ans:0, ex:"Two elements chemically bound in a fixed ratio = compound. Mixtures separate physically; rust doesn't."},
+"0.2": {q:"An element in Group 17 has how many outer electrons?", o:["7","17","1","8"], ans:0, ex:"Group number (for main groups) tracks outer electrons: Group 17 → 7 → wants one more."},
+"0.3": {q:"How many oxygen atoms are in Ca(NO<sub>3</sub>)<sub>2</sub>?", o:["6","3","2","5"], ans:0, ex:"Two nitrate groups × 3 O each = 6 O."},
+"0.4": {q:"To balance an equation you may change:", o:["coefficients only","subscripts only","both","element symbols"], ans:0, ex:"Changing a subscript changes the substance itself — H₂O₂ is not water."},
+"0.5": {q:"12.0 g ÷ 4.00 mL with correct sig figs =", o:["3.00 g/mL","3 g/mL","3.0000 g/mL","3.000 g/mL"], ans:0, ex:"Three sig figs in each input → three in the answer."},
+"0.6": {q:"The formula of the compound of Mg<sup>2+</sup> and N<sup>3−</sup> is:", o:["Mg<sub>3</sub>N<sub>2</sub>","MgN","Mg<sub>2</sub>N<sub>3</sub>","MgN<sub>2</sub>"], ans:0, ex:"Total charge must be zero: 3(+2) + 2(−3) = 0 → Mg₃N₂."},
+"0.7": {q:"NaCl(aq) means the sodium chloride is:", o:["separated into hydrated Na<sup>+</sup> and Cl<sup>−</sup> ions","floating as intact NaCl molecules","a solid at the bottom","evaporating"], ans:0, ex:"(aq) = taken apart by water; each ion wears a shell of water molecules."},
+});
+
+// ---------------- BIG-PICTURE INTROS (X.0) ----------------
+const INTROS = {
+u1:{t:"1.0 The big picture — start here", h:`
+<p><b>What this unit is about:</b> the atom itself — how we count atoms (the mole), how we know what's inside them (mass spectrometry, PES), how their electrons are arranged, and why position on the periodic table predicts behavior. One physical law explains almost everything here: <b>Coulomb's law</b> — opposite charges attract, more strongly when the charges are bigger and closer.</p>
+<p><b>Words you'll need:</b> <i>mole</i> (a counting unit, 6.022×10<sup>23</sup> things), <i>molar mass</i> (grams per mole), <i>isotope</i> (same element, different neutron count), <i>electron configuration</i> (the seating plan of electrons), <i>valence electrons</i> (the outer ones that do chemistry), <i>ionization energy</i> (cost of removing an electron).</p>
+${DIAG2.molemap}
+<p><b>Why it matters later:</b> every unit that follows counts things in moles and explains behavior with electron arrangements. Master the mole roadmap above and half the course's arithmetic is done.</p>`},
+u2:{t:"2.0 The big picture — start here", h:`
+<p><b>What this unit is about:</b> how atoms stick together. Three glue types — ionic (transfer), covalent (sharing), metallic (electron sea) — then the skill of drawing molecules (Lewis structures) and predicting their 3-D shapes (VSEPR). Shape is destiny: a molecule's geometry decides whether it's polar, and polarity decides how it behaves in Unit 3.</p>
+<p><b>Words you'll need:</b> <i>bond energy</i> (how much a bond costs to break), <i>lone pair</i> (electrons not shared), <i>electronegativity</i> (an atom's greed for shared electrons), <i>dipole</i> (a + and − end), <i>resonance</i> (one blended structure drawn several ways).</p>
+<p><b>Study physically:</b> this is the unit for the model kit. Build every geometry with your hands once — it converts memorization into something obvious.</p>`},
+u3:{t:"3.0 The big picture — start here", h:`
+<p><b>What this unit is about:</b> the forces BETWEEN molecules (IMFs) and everything they explain: why some things boil at −160°C and others at +100°C, how gases behave (PV = nRT), what dissolving is, and how lab instruments (spectrophotometer, chromatography) exploit these forces. <b>This is the biggest unit on the exam (18–22%).</b></p>
+<p><b>Words you'll need:</b> <i>intermolecular force / IMF</i> (attraction between separate molecules — much weaker than a bond), <i>vapor pressure</i> (a liquid's eagerness to evaporate), <i>polarizability</i> (how easily an electron cloud sloshes), <i>molarity</i> (mol per liter of solution).</p>
+<p><b>The one sentence to carry:</b> bonds hold a molecule together; IMFs hold molecules NEAR each other — boiling breaks only the second kind.</p>`},
+u4:{t:"4.0 The big picture — start here", h:`
+<p><b>What this unit is about:</b> chemical change itself. Three reaction families you must recognize on sight — precipitation (ions pair off into a solid), acid–base (a proton hops), redox (electrons transfer) — plus the accounting skill of the whole course: stoichiometry (using the balanced equation as a recipe with mole ratios).</p>
+<p><b>Words you'll need:</b> <i>net ionic equation</i> (the reaction with the bystanders deleted), <i>spectator ion</i> (present but unchanged), <i>limiting reactant</i> (the ingredient that runs out first), <i>oxidation number</i> (bookkeeping charge for tracking electrons), <i>titration</i> (measuring an unknown by reacting it exactly).</p>
+<p><b>Prerequisite check:</b> the Polyatomic Ions and Solubility decks must be near-automatic before this unit — the reactions move fast if the vocabulary is fluent.</p>`},
+u5:{t:"5.0 The big picture — start here", h:`
+<p><b>What this unit is about:</b> speed. Not whether a reaction happens, but how FAST — and what controls the speed (concentration, temperature, catalysts). The evidence is experimental: rate laws come from data tables, never from the balanced equation. Then mechanisms: the actual step-by-step story of a reaction, where the slowest step sets the pace.</p>
+<p><b>Words you'll need:</b> <i>rate</i> (concentration change per second), <i>rate constant k</i>, <i>order</i> (how sensitively rate responds to a concentration), <i>activation energy E<sub>a</sub></i> (the energy hill), <i>half-life</i> (time for half to react), <i>intermediate</i> (made then consumed), <i>catalyst</i> (lowers the hill, survives the reaction).</p>
+<p><b>Keep separate in your head:</b> kinetics = how fast (this unit) vs thermodynamics = how far (Units 6–9). Confusing them is the classic exam error.</p>`},
+u6:{t:"6.0 The big picture — start here", h:`
+<p><b>What this unit is about:</b> energy accounting. Reactions release heat (exothermic) or absorb it (endothermic); we measure it with a thermometer and q = mcΔT, and we predict it with Hess's law, formation enthalpies, or bond energies. The bookkeeping sign convention (− = released) does more work in this unit than any concept.</p>
+<p><b>Words you'll need:</b> <i>system vs surroundings</i> (the reaction vs everything else), <i>enthalpy ΔH</i> (heat at constant pressure), <i>specific heat c</i> (a substance's resistance to temperature change), <i>calorimeter</i> (a heat-measuring cup), <i>state function</i> (path doesn't matter).</p>
+<p><b>The mental picture:</b> energy is released when strong bonds form. "Energy stored in bonds" is a lie your biology class told you — breaking bonds always COSTS energy.</p>`},
+u7:{t:"7.0 The big picture — start here", h:`
+<p><b>What this unit is about:</b> reactions that run both directions at once and settle into a balance — <b>equilibrium</b>. The constant K describes where the balance sits; the quotient Q says where you are right now; Le Châtelier predicts how the balance responds to stress. One diagram carries the whole unit:</p>
+${DIAG2.qvsk}
+<p><b>Words you'll need:</b> <i>dynamic equilibrium</i> (both reactions still running, rates equal), <i>ICE table</i> (Initial–Change–Equilibrium bookkeeping), <i>K<sub>sp</sub></i> (equilibrium constant for dissolving), <i>common-ion effect</i>.</p>
+<p><b>Critical distinction:</b> K says how FAR a reaction goes, never how FAST. A huge K can belong to a reaction that takes a million years (that's Unit 5's business).</p>`},
+u8:{t:"8.0 The big picture — start here", h:`
+<p><b>What this unit is about:</b> equilibrium applied to the most important reaction type in biology and industry — proton transfer. The pH scale measures acidity; strong acids ionize completely while weak acids barely try (that's a Ka calculation); buffers resist pH change; titration curves tell a full story in one graph. Second-heaviest unit on the exam (11–15%).</p>
+${DIAG2.phscale}
+<p><b>Words you'll need:</b> <i>conjugate pair</i> (two species one H<sup>+</sup> apart), <i>K<sub>a</sub></i> (an acid's strength number), <i>buffer</i> (weak acid + its partner base), <i>equivalence point</i> (moles exactly matched), <i>half-equivalence</i> (where pH = pK<sub>a</sub>).</p>
+<p><b>Prerequisite:</b> Unit 7's ICE-table machinery — Unit 8 is Unit 7 wearing an acid costume.</p>`},
+u9:{t:"9.0 The big picture — start here", h:`
+<p><b>What this unit is about:</b> the final verdict on any reaction — will it go? Entropy (S) measures dispersal, Gibbs free energy (ΔG = ΔH − TΔS) combines heat and dispersal into a single yes/no number, and electrochemistry cashes favorable reactions out as electricity (batteries) or forces unfavorable ones with electricity (electrolysis, charging).</p>
+<p><b>Words you'll need:</b> <i>entropy S</i> (spread-out-ness of energy and matter), <i>thermodynamically favorable</i> (ΔG &lt; 0 — the exam's word for "spontaneous"), <i>anode/cathode</i> (where oxidation/reduction happen), <i>E°<sub>cell</sub></i> (a cell's voltage under standard conditions), <i>Faraday's constant</i> (charge of a mole of electrons).</p>
+<p><b>The grand finale:</b> ΔG° = −RT ln K = −nFE° ties Units 6, 7 and 9 into one equation family — the hardest FRQs live exactly on that bridge.</p>`},
+};
+
+// ---------------- merge ----------------
+LESSONS.unshift(LESSON_U0);
+LESSONS.forEach(l => {
+  if (INTROS[l.id]) l.sections.unshift(INTROS[l.id]);
+  if (l.id !== "u0" && l.videos) l.videos.push({ t: "OpenStax Chemistry 2e — free full textbook (unlimited depth, search any topic)", u: "https://openstax.org/details/books/chemistry-2e" });
+});
+// drop the Aufbau diagram into section 1.4
+(() => {
+  const s14 = LESSONS.find(l => l.id === "u1").sections.find(s => s.t.startsWith("1.4"));
+  if (s14) s14.h += DIAG2.aufbau;
+})();
 // ================= FLASHCARD DATA =================
 // typed cards: student types the formula; checker normalizes charges/subscripts.
 const DECKS = [
@@ -1252,6 +1456,15 @@ function streak() {
   while (state.activity[ymd(d)]) { n++; d.setDate(d.getDate() - 1); }
   return n;
 }
+function chargeVariants(s) {
+  // "SO42-" ⇄ "SO4-2", "NH4+1" ⇄ "NH41+" etc. — accept the charge written either way around
+  const out = [];
+  let m = s.match(/^(.+?)(\d)([+-])$/); // ...digit sign  (SO4"2-")
+  if (m) out.push(m[1] + m[3] + m[2]);
+  m = s.match(/^(.+?)([+-])(\d)$/);     // ...sign digit  (SO4"-2")
+  if (m) out.push(m[1] + m[3] + m[2]);
+  return out;
+}
 function normAns(s) {
   const supers = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁺": "+", "⁻": "-" };
   const subs = { "₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4", "₅": "5", "₆": "6", "₇": "7", "₈": "8", "₉": "9" };
@@ -1289,6 +1502,19 @@ function renderDash() {
     tile("Study streak", streak() + (streak() === 1 ? " day" : " days"), "Days in a row with any activity")
   );
   p.append(g);
+  // save-status line: makes "is my progress here?" visible at a glance
+  const actKeys = Object.keys(state.activity).sort();
+  const totalAns = actKeys.reduce((s, k) => s + state.activity[k], 0);
+  const sline = el("div", "hint");
+  sline.style.margin = "8px 2px 0";
+  if (!storageOK) {
+    sline.innerHTML = "⚠️ This viewer can't save — download the file and open it in Chrome/Safari, or export before closing.";
+  } else if (totalAns === 0) {
+    sline.innerHTML = "🆕 <b>No saved progress in this browser yet.</b> If you studied before, you were probably in a different browser, device, or private/incognito window — open the app there, or bring your progress here with Save / Load → Import. Always use the same browser on the same device.";
+  } else {
+    sline.innerHTML = "💾 Progress saved on this device ✓ · last activity: <b>" + actKeys[actKeys.length - 1] + "</b> · " + totalAns + " answers stored";
+  }
+  p.append(sline);
   p.append(el("h2", null, "Course mastery"));
   const cm = el("div", "tile");
   const avg = Math.round(LESSONS.reduce((s, l) => s + unitMastery(l), 0) / LESSONS.length);
@@ -1341,16 +1567,17 @@ function unitChecks(l) {
   return { ok, total: keys.length };
 }
 function unitMastery(l) {
+  // weighted average over the components this unit actually has
+  const parts = [[10, state.lessons[l.id] ? 1 : 0]];
   const c = unitChecks(l);
-  const deckM = l.decks.reduce((s, did) => s + deckMastery(DECKS.find(d => d.id === did)), 0) / l.decks.length;
-  const best = bestScore(l.quiz) || 0;
-  const fr = state.frq[l.id];
-  return Math.round(
-    (state.lessons[l.id] ? 10 : 0)
-    + 25 * (c.total ? c.ok / c.total : 0)
-    + 20 * deckM
-    + 30 * best / 100
-    + 15 * (fr ? fr.got / fr.max : 0));
+  if (c.total) parts.push([25, c.ok / c.total]);
+  if (l.decks && l.decks.length) {
+    parts.push([20, l.decks.reduce((s, did) => s + deckMastery(DECKS.find(d => d.id === did)), 0) / l.decks.length]);
+  }
+  if (l.quiz) parts.push([30, (bestScore(l.quiz) || 0) / 100]);
+  if (l.frq) { const fr = state.frq[l.id]; parts.push([15, fr ? fr.got / fr.max : 0]); }
+  const wsum = parts.reduce((s, p) => s + p[0], 0);
+  return Math.round(100 * parts.reduce((s, p) => s + p[0] * p[1], 0) / wsum);
 }
 function levelOf(p) {
   if (p <= 0) return { n: "Not started", c: "var(--baseline)" };
@@ -1426,7 +1653,7 @@ function renderLearn() {
   });
   if (lesson.videos) {
     const vb = el("div", "ls-sec");
-    vb.append(el("h4", null, "📺 Watch — reinforce with video"));
+    vb.append(el("h4", null, "📺 Watch & read — go deeper"));
     const ul = el("ul");
     lesson.videos.forEach(vd => {
       const li = el("li");
@@ -1491,9 +1718,11 @@ function renderLearn() {
     b.addEventListener("click", () => { switchTab("cards"); startSession(d); });
     btns.append(b);
   });
-  const qb = el("button", "btn ghost", "Quiz: " + QUIZZES.find(q => q.id === lesson.quiz).name.split("·")[0].trim());
-  qb.addEventListener("click", () => { switchTab("quiz"); startQuiz(QUIZZES.find(q => q.id === lesson.quiz)); });
-  btns.append(qb);
+  if (lesson.quiz) {
+    const qb = el("button", "btn ghost", "Quiz: " + QUIZZES.find(q => q.id === lesson.quiz).name.split("·")[0].trim());
+    qb.addEventListener("click", () => { switchTab("quiz"); startQuiz(QUIZZES.find(q => q.id === lesson.quiz)); });
+    btns.append(qb);
+  }
   const mark = el("button", "btn", state.lessons[lesson.id] ? "Studied ✓ (" + state.lessons[lesson.id] + ")" : "Mark unit as studied ✓");
   mark.addEventListener("click", () => {
     state.lessons[lesson.id] = todayYmd(); logActivity(1); save();
@@ -1587,16 +1816,21 @@ function renderSession(p) {
   }
 
   if (c.typed) {
-    const inp = el("input"); inp.placeholder = "Type the formula… e.g. SO42-"; inp.autocapitalize = "off";
+    const inp = el("input"); inp.placeholder = "e.g. SO42-"; inp.autocapitalize = "off";
+    const hint = el("div", "note", "Type it flat — no superscripts needed. All of these count: <b>SO42-</b>, <b>SO4^2-</b>, <b>SO4 2-</b>, <b>so4-2</b>");
+    hint.style.fontSize = "12px";
     const check = el("button", "btn", "Check");
     const doCheck = () => {
       const v = normAns(inp.value);
-      const ok = c.accept.some(a => normAns(a) === v) && v.length > 0;
+      const ok = v.length > 0 && c.accept.some(a => {
+        const na = normAns(a);
+        return na === v || chargeVariants(na).includes(v) || chargeVariants(v).includes(na);
+      });
       inp.disabled = true; check.remove(); reveal(ok ? "ok" : "no");
     };
     check.addEventListener("click", doCheck);
     inp.addEventListener("keydown", e => { if (e.key === "Enter" && !inp.disabled) { e.preventDefault(); doCheck(); } });
-    card.append(inp, check, ansWrap);
+    card.append(inp, hint, check, ansWrap);
     setTimeout(() => inp.focus(), 0);
   } else {
     const show = el("button", "btn ghost", "Show answer");
@@ -1746,6 +1980,35 @@ const tip = $("#viztip");
 function showTip(evt, html) { tip.innerHTML = html; tip.style.display = "block"; tip.style.left = (evt.clientX + 12) + "px"; tip.style.top = (evt.clientY + 12) + "px"; }
 function hideTip() { tip.style.display = "none"; }
 
+function fallbackCopy(txt, done) {
+  const ta = document.createElement("textarea");
+  ta.value = txt; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); done(); } catch (e) { prompt("Copy this report:", txt); }
+  ta.remove();
+}
+function buildParentReport() {
+  const avg = Math.round(LESSONS.reduce((s, l) => s + unitMastery(l), 0) / LESSONS.length);
+  const days = Math.max(0, Math.ceil((EXAM_DATE - new Date()) / 86400000));
+  const last7 = (() => { let n = 0; for (let i = 0; i < 7; i++) { const d = new Date(); d.setDate(d.getDate() - i); n += state.activity[ymd(d)] || 0; } return n; })();
+  const lines = [
+    "📊 AP CHEMISTRY — PROGRESS REPORT (" + todayYmd() + ")",
+    "Exam in " + days + " days · Course mastery: " + avg + "% · Streak: " + streak() + " day(s) · Answers this week: " + last7,
+    ""
+  ];
+  LESSONS.forEach(l => {
+    const m = unitMastery(l), lv = levelOf(m);
+    const best = bestScore(l.quiz);
+    const fr = state.frq[l.id];
+    lines.push("U" + l.id.slice(1) + " " + l.name.split("·")[1].trim() + ": " + lv.n + " " + m + "%"
+      + (best != null ? " · quiz " + best + "%" : "")
+      + (fr ? " · FRQ " + fr.got + "/" + fr.max : ""));
+  });
+  lines.push("", "Due cards: " + totalDue() + " · Smart Review pool: " + weakPool().length);
+  const cc = bestScore("challenge");
+  if (cc != null) lines.push("Course Challenge best: " + cc + "%");
+  return lines.join("\n");
+}
 function gradeOf(best) {
   return best == null ? null : best >= 90 ? "A" : best >= 80 ? "B" : best >= 65 ? "C" : "D";
 }
@@ -1755,7 +2018,18 @@ function renderProgress() {
 
   // ---- Report card ----
   const rc = el("div", "chart-tile"); rc.style.marginBottom = "14px";
-  rc.append(el("h3", null, "📋 Report card"), el("div", "chart-sub", "One row per unit, built from every flashcard and quiz answer. The 'next move' column is the study plan."));
+  const rcHead = el("div"); rcHead.style.display = "flex"; rcHead.style.justifyContent = "space-between"; rcHead.style.alignItems = "center"; rcHead.style.flexWrap = "wrap"; rcHead.style.gap = "8px";
+  rcHead.append(el("h3", null, "📋 Report card"));
+  const shareBtn = el("button", "btn small ghost", "📤 Copy report for parent");
+  shareBtn.addEventListener("click", () => {
+    const txt = buildParentReport();
+    const done = () => alert("Report copied ✔ — paste it into WhatsApp/iMessage and send it.");
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(done).catch(() => fallbackCopy(txt, done));
+    } else fallbackCopy(txt, done);
+  });
+  rcHead.append(shareBtn);
+  rc.append(rcHead, el("div", "chart-sub", "One row per unit, built from every flashcard and quiz answer. The 'next move' column is the study plan. The copy button creates a text summary to send to your parents — a weekly habit."));
   const rt = el("table", "reviewtbl", "<tr><th>Unit</th><th>Level</th><th>Lesson</th><th>Quiz best</th><th>FRQ</th><th>Weak Qs</th><th>Grade</th><th>Next move</th></tr>");
   LESSONS.forEach(l => {
     const studied = !!state.lessons[l.id];
@@ -1765,7 +2039,9 @@ function renderProgress() {
     const g = gradeOf(best);
     const gCol = g === "A" || g === "B" ? "var(--good-text)" : g === "C" ? "var(--s2)" : g === "D" ? "var(--crit)" : "var(--ink-3)";
     const fr = state.frq[l.id];
+    const uc = unitChecks(l);
     const move = !studied ? "Read the lesson (Learn tab)"
+      : !l.quiz ? (uc.ok < uc.total ? "Answer the remaining section checks" : "Foundations complete ✓")
       : best == null ? "Take the unit quiz"
       : best < 80 ? "Review your misses, retake in ~3 days"
       : weakN ? "Clear " + weakN + " question(s) via Smart Review"
@@ -1927,7 +2203,7 @@ function renderData() {
     const n = el("div", "notice");
     n.style.background = "color-mix(in srgb, var(--good) 12%, var(--surface-1))";
     n.style.borderColor = "color-mix(in srgb, var(--good) 40%, var(--surface-1))";
-    n.innerHTML = "<b>✓ Auto-save is ON.</b> Progress is saved in this browser automatically after every answer — just open this same file/link next time and continue. Export is only needed as a backup, or to move your progress to a different computer or browser.";
+    n.innerHTML = "<b>✓ Auto-save is ON.</b> Progress is saved in this browser automatically after every answer — just open this same file/link next time and continue. This tab is only for: <b>backup</b> (export a copy now and then), <b>moving to another device</b> (export here, import there), and reset. To show your progress to your parents, use <b>📤 Copy report</b> on the Progress tab instead — no file needed.";
     p.append(n);
   } else {
     p.append(el("div", "notice", "<b>Auto-save isn't available in this viewer.</b> Progress lives only in this open tab: click <b>Export</b> before closing, and <b>Import</b> the file next session. (Tip: download the file and open it directly in Chrome/Safari — auto-save turns on there.)"));
@@ -1967,6 +2243,41 @@ function renderData() {
   const stats = el("div", "tile"); stats.style.marginTop = "14px";
   const nCards = DECKS.reduce((s, d) => s + d.cards.length, 0);
   const nQs = QUIZZES.reduce((s, u) => s + u.qs.length, 0);
+  // PIN management (optional lock)
+  if (storageOK) {
+    const pinTile = el("div", "tile"); pinTile.style.marginTop = "14px";
+    const hasPin = (() => { try { return !!localStorage.getItem("apchem-pin"); } catch (e) { return false; } })();
+    pinTile.append(el("h2", null, "PIN lock (optional)"),
+      el("div", "hint", hasPin
+        ? "A PIN is set — the app asks for it on every open. Forgetting it means resetting the app, so only keep it if you need it."
+        : "Off by default for simplicity. Turn it on only if others use this computer and you want to keep them out. Note: forgetting the PIN erases your progress."));
+    if (hasPin) {
+      const rm = el("button", "btn small ghost", "Remove PIN"); rm.style.marginTop = "10px";
+      rm.addEventListener("click", () => {
+        const v = prompt("Enter your current PIN to remove it:");
+        if (v == null) return;
+        try {
+          if (pinHash(v.trim()) === localStorage.getItem("apchem-pin")) {
+            localStorage.removeItem("apchem-pin"); alert("PIN removed — the app now opens directly."); renderData();
+          } else alert("Wrong PIN.");
+        } catch (e) {}
+      });
+      pinTile.append(rm);
+    } else {
+      const pi = document.createElement("input"); pi.type = "password"; pi.placeholder = "New PIN (4+ characters)"; pi.style.marginTop = "10px"; pi.style.marginRight = "8px";
+      pi.style.padding = "8px 10px"; pi.style.border = "1px solid var(--baseline)"; pi.style.borderRadius = "8px"; pi.style.background = "var(--page)"; pi.style.color = "var(--ink-1)";
+      const en = el("button", "btn small", "Enable PIN");
+      en.addEventListener("click", () => {
+        const v = pi.value.trim();
+        if (v.length < 4) { alert("PIN must be at least 4 characters."); return; }
+        try { localStorage.setItem("apchem-pin", pinHash(v)); } catch (e) {}
+        alert("PIN enabled — you'll be asked for it next time the app opens.");
+        renderData();
+      });
+      pinTile.append(pi, en);
+    }
+    p.append(pinTile);
+  }
   const danger = el("div", "tile"); danger.style.marginTop = "14px";
   danger.append(el("h2", null, "Reset"), el("div", "hint", "Wipes all saved progress in this browser (cards, quizzes, lessons). Cannot be undone — export a backup first."));
   const rb = el("button", "btn small", "Reset all progress"); rb.style.marginTop = "10px"; rb.style.background = "var(--crit)";
@@ -2000,14 +2311,10 @@ function pinGate() {
   try { unlocked = sessionStorage.getItem("apchem-unlock") === "1"; } catch (e) {}
   if (unlocked) return;
   const saved = (() => { try { return localStorage.getItem("apchem-pin"); } catch (e) { return null; } })();
+  if (!saved) return; // PIN is optional — no lock unless one was set (Save / Load tab)
   const lock = $("#lock"), inp = $("#lock input"), btn = $("#lock button"),
         msg = $("#lock .lk-msg"), title = $("#lock .lk-title"), forgot = $("#lock .lk-forgot");
   lock.style.display = "flex";
-  if (!saved) {
-    title.textContent = "Create your PIN";
-    msg.textContent = "Pick a PIN (at least 4 characters). You'll type it each time you open the trainer.";
-    forgot.style.display = "none";
-  }
   function done() {
     try { sessionStorage.setItem("apchem-unlock", "1"); } catch (e) {}
     lock.style.display = "none";
@@ -2015,11 +2322,7 @@ function pinGate() {
   function submit() {
     const v = inp.value.trim();
     msg.classList.remove("err");
-    if (!saved) {
-      if (v.length < 4) { msg.textContent = "PIN must be at least 4 characters."; msg.classList.add("err"); return; }
-      try { localStorage.setItem("apchem-pin", pinHash(v)); } catch (e) {}
-      done();
-    } else if (pinHash(v) === saved) {
+    if (pinHash(v) === saved) {
       done();
     } else {
       msg.textContent = "Wrong PIN — try again."; msg.classList.add("err");
